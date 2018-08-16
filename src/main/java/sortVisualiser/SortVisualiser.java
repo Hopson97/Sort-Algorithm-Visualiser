@@ -1,21 +1,25 @@
 package sortVisualiser;
 
+import java.awt.Dimension;
 import javax.swing.JFrame;
 
 /**
  * The main class for the sort visualiser GUI
- * @author mhops
+ * @author Matt Hopson
  */
 public class SortVisualiser {
-    public static final int WIN_WIDTH = 1280;
-    public static final int WIN_HEIGHT = 720;
-    
     private JFrame window;
+    private SortArray sortArray;
     
     public SortVisualiser() {
         window = new JFrame("Sort Visualiser");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setSize(WIN_WIDTH, WIN_HEIGHT);
+        
+        sortArray = new SortArray();
+        window.add(sortArray);
+        sortArray.repaint();
+        
+        window.pack();
         window.setVisible(true);
     }
     
