@@ -17,7 +17,7 @@ import static util.Sleep.sleepFor;
 public class SortArray extends JPanel {
     public static final int WIN_WIDTH = 1280;
     public static final int WIN_HEIGHT = 720;
-    private static final int BAR_WIDTH = 8;
+    private static final int BAR_WIDTH = 5;
     private static final int NUM_BARS = WIN_WIDTH / BAR_WIDTH;
     
     private int[] array;
@@ -41,7 +41,7 @@ public class SortArray extends JPanel {
         return array[index];
     }
     
-    public void swapUpdate(int firstIndex, int secondIndex) {
+    public void swap(int firstIndex, int secondIndex, long milliSecDelay) {
         int temp = array[firstIndex];
         array[firstIndex] = array[secondIndex];
         array[secondIndex] = temp;
@@ -50,14 +50,28 @@ public class SortArray extends JPanel {
         barColours[secondIndex] = 100;
         
         repaint();
-        sleepFor(millisecondsToNano(15));
+        sleepFor(millisecondsToNano(milliSecDelay));
     }
     
-    public void updateSingle(int index, int value) {
+    public void updateSingle(int index, int value, long millisecondDelay) {
         array[index] = value;
         barColours[index] = 100;
         repaint();
-        sleepFor(millisecondsToNano(15));
+        sleepFor(millisecondsToNano(millisecondDelay));
+    }
+    
+    public void shuffle() {
+        Random rng = new Random();
+        for (int i = 0; i < arraySize(); i++) {
+            int swapWithIndex = rng.nextInt(arraySize() - 1);
+            swap(i, swapWithIndex, 5);
+        }
+    }
+    
+    public void highlightArray() {
+        for (int i = 0; i < arraySize(); i++) {
+            swap(i, i, 5);
+        }
     }
     
     /**
@@ -87,7 +101,7 @@ public class SortArray extends JPanel {
        
         graphics.setColor(Color.white);
         for (int x = 0; x < NUM_BARS; x++) {
-            int height = getValue(x) * 3;
+            int height = getValue(x) * 2;
             int xBegin = x + (BAR_WIDTH - 1) * x;
             int yBegin = WIN_HEIGHT - height;
             

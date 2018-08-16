@@ -5,8 +5,8 @@ import javax.swing.JFrame;
 import sortVisualiser.algorithms.BubbleSort;
 import sortVisualiser.algorithms.ISortAlgorithm;
 import sortVisualiser.algorithms.InsertionSort;
+import sortVisualiser.algorithms.QuickSort;
 import sortVisualiser.algorithms.SelectionSort;
-import sortVisualiser.algorithms.Shuffle;
 import static util.Sleep.secondsToNano;
 import static util.Sleep.sleepFor;
 
@@ -16,9 +16,7 @@ import static util.Sleep.sleepFor;
  */
 public class SortVisualiser {
     private JFrame window;
-    private SortArray sortArray;
-    private Shuffle shuffler = new Shuffle();
-    
+    private SortArray sortArray;  
     private ArrayList<ISortAlgorithm> sortQueue;
     
     /**
@@ -34,19 +32,14 @@ public class SortVisualiser {
         window.setVisible(true);
         
         sortQueue = new ArrayList<>();
+        sortQueue.add(new QuickSort());
         sortQueue.add(new SelectionSort());
         sortQueue.add(new InsertionSort());
         sortQueue.add(new BubbleSort());
     }
-    
-    private void highlightArray() {
-        for (int i = 0; i < sortArray.arraySize(); i++) {
-            sortArray.swapUpdate(i, i);
-        }
-    }
-    
+   
     private void shuffleAndWait() {
-        shuffler.runSort(sortArray);
+        sortArray.shuffle();
         sortArray.resetColours();
         sleepFor(secondsToNano(2));
     }
@@ -56,8 +49,9 @@ public class SortVisualiser {
             sleepFor(secondsToNano(1));
             shuffleAndWait();
             algorithm.runSort(sortArray);
+            System.out.println("SORT DONE");
             sortArray.resetColours();
-            highlightArray();
+            sortArray.highlightArray();
             sortArray.resetColours();
         }
     }

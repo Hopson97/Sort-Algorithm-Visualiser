@@ -17,7 +17,7 @@ public class SelectionSort implements ISortAlgorithm
                     minIndex = j;
                 }
             }
-            array.swapUpdate(i, minIndex);
+            array.swap(i, minIndex, 50);
         }
     }
 }
