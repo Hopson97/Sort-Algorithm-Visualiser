@@ -14,10 +14,10 @@ public class QuickSort implements ISortAlgorithm
         for (int j = lowIndex; j <= highIndex - 1; j++) {
             if (array.getValue(j) <= pivotValue) {
                 i++;
-                array.swap(i, j, 5);
+                array.swap(i, j, 30);
             }
         }
-        array.swap(i + 1, highIndex, 50);
+        array.swap(i + 1, highIndex, 30);
         return i + 1;
     }
     
@@ -32,6 +32,16 @@ public class QuickSort implements ISortAlgorithm
     @Override
     public void runSort(SortArray array) {
         quickSort(array, 0, array.arraySize() - 1);
+    }
+
+    @Override
+    public String getName() {
+        return "Quick Sort";
+    }
+
+    @Override
+    public long getDelay() {
+        return 30;
     }
 
 }

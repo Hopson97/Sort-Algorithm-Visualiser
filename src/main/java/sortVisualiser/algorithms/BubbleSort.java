@@ -19,4 +19,14 @@ public class BubbleSort implements ISortAlgorithm
             }
         }
     }
+
+    @Override
+    public String getName() {
+        return "Bubble Sort";
+    }
+
+    @Override
+    public long getDelay() {
+        return 2;
+    }
 }

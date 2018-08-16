@@ -17,7 +17,17 @@ public class SelectionSort implements ISortAlgorithm
                     minIndex = j;
                 }
             }
-            array.swap(i, minIndex, 50);
+            array.swap(i, minIndex, 40);
         }
+    }
+
+    @Override
+    public String getName() {
+        return "Selection Sort";
+    }
+
+    @Override
+    public long getDelay() {
+        return 40;
     }
 }
