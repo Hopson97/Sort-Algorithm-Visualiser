@@ -12,37 +12,24 @@ import sortVisualiser.algorithms.BubbleSort;
  * Canvas where the sortable array is drawn
  * @author Matt Hopson
  */ 
-public class SortArrayPanel extends JPanel {
+public class ArrayCanvas extends JPanel {
     public static final int WIN_WIDTH = 1280;
     public static final int WIN_HEIGHT = 720;
     private static final int BAR_WIDTH = 8;
     private static final int NUM_BARS = WIN_WIDTH / BAR_WIDTH;
     
-    private int[] array;
+    private SortArray array;
     
     /**
      * Creates and sets the values of the array
      */
-    public SortArrayPanel() {
-        array = new int[NUM_BARS];
-        for (int i = 0; i < NUM_BARS; i++) {
-            array[i] = i;
-        }
-        shuffleArray();
-        
+    public ArrayCanvas() {
         setBackground(Color.darkGray);
-        
-        new BubbleSort().runSort(array);
+        array = new SortArray(NUM_BARS, this);
     }
     
-    private void shuffleArray() {
-        Random rng = new Random();
-        for (int i = 0; i < NUM_BARS; i++) {
-            int swapWithIndex = rng.nextInt(NUM_BARS - 1);
-            int temp = array[i];
-            array[i] = array[swapWithIndex];
-            array[swapWithIndex] = temp;
-        }
+    public void run() {
+        new BubbleSort().runSort(array);
     }
     
     /**
@@ -56,7 +43,7 @@ public class SortArrayPanel extends JPanel {
        
         graphics.setColor(Color.white);
         for (int x = 0; x < NUM_BARS; x++) {
-            int height = array[x] * 3;
+            int height = array.getValue(x) * 3;
             int xBegin = x + (BAR_WIDTH - 1) * x;
             int yBegin = WIN_HEIGHT - height;
             

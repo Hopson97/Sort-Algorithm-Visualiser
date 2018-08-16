@@ -20,10 +20,10 @@ public class SortVisualiser {
         
         sortArray = new SortArrayPanel();
         window.add(sortArray);
-        sortArray.repaint();
-        
         window.pack();
         window.setVisible(true);
+        
+        sortArray.run();
     }
     
     public static void main(String... args) {
