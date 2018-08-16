@@ -20,8 +20,8 @@ public class SortArray extends JPanel {
     private static final int BAR_WIDTH = 5;
     private static final int NUM_BARS = WIN_WIDTH / BAR_WIDTH;
     
-    private int[] array;
-    private int[] barColours;  
+    private final int[] array;
+    private final int[] barColours;  
     
     public SortArray() {
         setBackground(Color.darkGray);
@@ -70,7 +70,7 @@ public class SortArray extends JPanel {
     
     public void highlightArray() {
         for (int i = 0; i < arraySize(); i++) {
-            swap(i, i, 5);
+            updateSingle(i, getValue(i), 5);
         }
     }
     
@@ -109,7 +109,7 @@ public class SortArray extends JPanel {
             graphics.setColor(new Color(255, 255 - val, 255 - val));
             graphics.fillRect(xBegin, yBegin, BAR_WIDTH, height);
             if (barColours[x] > 0) {
-                barColours[x]-= 20;
+                barColours[x]-= 10;
             }
         }
     }

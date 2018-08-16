@@ -15,9 +15,9 @@ import static util.Sleep.sleepFor;
  * @author Matt Hopson
  */
 public class SortVisualiser {
-    private JFrame window;
-    private SortArray sortArray;  
-    private ArrayList<ISortAlgorithm> sortQueue;
+    private final JFrame window;
+    private final SortArray sortArray;  
+    private final ArrayList<ISortAlgorithm> sortQueue;
     
     /**
      * Creates the GUI
