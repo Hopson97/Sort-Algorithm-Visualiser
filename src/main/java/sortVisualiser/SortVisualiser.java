@@ -9,13 +9,16 @@ import javax.swing.JFrame;
  */
 public class SortVisualiser {
     private JFrame window;
-    private SortArray sortArray;
+    private SortArrayPanel sortArray;
     
+    /**
+     * Creates the GUI
+     */
     public SortVisualiser() {
         window = new JFrame("Sort Visualiser");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        sortArray = new SortArray();
+        sortArray = new SortArrayPanel();
         window.add(sortArray);
         sortArray.repaint();
         
