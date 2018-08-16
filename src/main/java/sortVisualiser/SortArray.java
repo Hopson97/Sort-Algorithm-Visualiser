@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.util.Random;
 import javax.swing.JPanel;
 import static util.Sleep.microsecondsToNano;
+import static util.Sleep.millisecondsToNano;
 import static util.Sleep.sleepFor;
 
 /**
@@ -49,7 +50,14 @@ public class SortArray extends JPanel {
         barColours[secondIndex] = 100;
         
         repaint();
-        sleepFor(microsecondsToNano(10000));
+        sleepFor(millisecondsToNano(15));
+    }
+    
+    public void updateSingle(int index, int value) {
+        array[index] = value;
+        barColours[index] = 100;
+        repaint();
+        sleepFor(millisecondsToNano(15));
     }
     
     /**

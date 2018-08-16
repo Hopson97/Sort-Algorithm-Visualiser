@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import sortVisualiser.algorithms.BubbleSort;
 import sortVisualiser.algorithms.ISortAlgorithm;
+import sortVisualiser.algorithms.InsertionSort;
+import sortVisualiser.algorithms.SelectionSort;
 import sortVisualiser.algorithms.Shuffle;
 import static util.Sleep.secondsToNano;
 import static util.Sleep.sleepFor;
@@ -32,6 +34,8 @@ public class SortVisualiser {
         window.setVisible(true);
         
         sortQueue = new ArrayList<>();
+        sortQueue.add(new SelectionSort());
+        sortQueue.add(new InsertionSort());
         sortQueue.add(new BubbleSort());
     }
     
@@ -49,7 +53,7 @@ public class SortVisualiser {
     
     public void run() {
         for (ISortAlgorithm algorithm : sortQueue) {
-            sleepFor(secondsToNano(2));
+            sleepFor(secondsToNano(1));
             shuffleAndWait();
             algorithm.runSort(sortArray);
             sortArray.resetColours();
