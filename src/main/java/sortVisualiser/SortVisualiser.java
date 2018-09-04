@@ -1,6 +1,8 @@
 package sortVisualiser;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import sortVisualiser.algorithms.BubbleSort;
 import sortVisualiser.algorithms.GnomeSort;
@@ -43,12 +45,20 @@ public class SortVisualiser {
     private void shuffleAndWait() {
         sortArray.shuffle();
         sortArray.resetColours();
-        sleepFor(secondsToNano(2));
+        try {
+            Thread.sleep(2);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
     }
     
     public void run() {
         for (ISortAlgorithm algorithm : sortQueue) {
-            sleepFor(secondsToNano(1));
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
             shuffleAndWait();
             algorithm.runSort(sortArray);
             
