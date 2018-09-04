@@ -58,6 +58,8 @@ public class SortVisualiser {
                 ex.printStackTrace();
             }
             shuffleAndWait();
+
+            sortArray.setName(algorithm.getName());
             algorithm.runSort(sortArray);
             
             sortArray.resetColours();

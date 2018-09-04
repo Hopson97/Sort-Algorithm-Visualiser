@@ -1,9 +1,6 @@
 package sortVisualiser;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.util.Random;
 import javax.swing.JPanel;
 
@@ -18,7 +15,8 @@ public class SortArray extends JPanel {
     private static final int NUM_BARS = WIN_WIDTH / BAR_WIDTH;
     
     private final int[] array;
-    private final int[] barColours;  
+    private final int[] barColours;
+    private String algorithmName = "";
     
     public SortArray() {
         setBackground(Color.darkGray);
@@ -103,6 +101,10 @@ public class SortArray extends JPanel {
     public void paintComponent(Graphics g) {
         Graphics2D graphics = (Graphics2D)g;
         super.paintComponent(graphics);
+
+        graphics.setColor(Color.black);
+        graphics.setFont(new Font("Verdana", Font.BOLD, 27));
+        graphics.drawString(algorithmName, 100, 100);
        
         graphics.setColor(Color.white);
         for (int x = 0; x < NUM_BARS; x++) {
@@ -117,5 +119,9 @@ public class SortArray extends JPanel {
                 barColours[x]-= 10;
             }
         }
+    }
+
+    public void setName(String algorithmName) {
+        this.algorithmName = algorithmName;
     }
 }
