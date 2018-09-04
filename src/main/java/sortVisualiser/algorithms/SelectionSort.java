@@ -4,10 +4,21 @@ import sortVisualiser.SortArray;
 
 /**
  * Selection sort implementation
+ *
  * @author Matt Hopson
  */
-public class SelectionSort implements ISortAlgorithm
-{
+public class SelectionSort implements ISortAlgorithm {
+
+    /**
+     * This method implements the Selection sort algorithm, see
+     * <a href="https://en.wikipedia.org/wiki/Selection_sort">Selection_sort</a> to understand more.
+     * Takes a SortArray object called array and sorts his elements according to the mathematical theory
+     * of the order "less than", see <a href="https://en.wikipedia.org/wiki/Order_theory">Order_theory</a> to
+     * understand more.
+     *
+     * @param array the array to be sorted
+     * @see SortArray
+     */
     @Override
     public void runSort(SortArray array) {
         int len = array.arraySize();
