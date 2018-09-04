@@ -96,9 +96,12 @@ public class SortArray extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         Graphics2D graphics = (Graphics2D)g;
-        super.paintComponent(graphics);
-       
-        graphics.setColor(Color.white);
+
+        graphics.setBackground(Color.BLACK);
+        graphics.setColor(Color.WHITE);
+
+        graphics.clearRect(0, 0, getWidth(), getHeight());
+
         for (int x = 0; x < NUM_BARS; x++) {
             int height = getValue(x) * 2;
             int xBegin = x + (BAR_WIDTH - 1) * x;
