@@ -3,6 +3,7 @@ package sortVisualiser;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import sortVisualiser.algorithms.BubbleSort;
+import sortVisualiser.algorithms.GnomeSort;
 import sortVisualiser.algorithms.ISortAlgorithm;
 import sortVisualiser.algorithms.InsertionSort;
 import sortVisualiser.algorithms.MergeSort;
@@ -33,7 +34,8 @@ public class SortVisualiser {
         window.setVisible(true);
         
         sortQueue = new ArrayList<>();
-        sortQueue.add(new MergeSort());
+        sortQueue.add(new GnomeSort());
+        //sortQueue.add(new MergeSort());
         //sortQueue.add(new QuickSort());
         //sortQueue.add(new SelectionSort());
         //sortQueue.add(new InsertionSort());
