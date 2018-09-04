@@ -9,8 +9,6 @@ import sortVisualiser.algorithms.InsertionSort;
 import sortVisualiser.algorithms.MergeSort;
 import sortVisualiser.algorithms.QuickSort;
 import sortVisualiser.algorithms.SelectionSort;
-import static util.Sleep.secondsToNano;
-import static util.Sleep.sleepFor;
 
 /**
  * The main class for the sort visualiser GUI

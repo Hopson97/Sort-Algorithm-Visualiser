@@ -6,8 +6,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Random;
 import javax.swing.JPanel;
-import static util.Sleep.millisecondsToNano;
-import static util.Sleep.sleepFor;
 
 /**
  * The array that can be sorted
@@ -40,7 +38,7 @@ public class SortArray extends JPanel {
         return array[index];
     }
     
-    public void swap(int firstIndex, int secondIndex, long milliSecDelay) {
+    public void swap(int firstIndex, int secondIndex, long millisecondDelay) {
         int temp = array[firstIndex];
         array[firstIndex] = array[secondIndex];
         array[secondIndex] = temp;
@@ -49,14 +47,22 @@ public class SortArray extends JPanel {
         barColours[secondIndex] = 100;
         
         repaint();
-        sleepFor(millisecondsToNano(milliSecDelay));
+        try {
+            Thread.sleep(millisecondDelay);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
     }
     
     public void updateSingle(int index, int value, long millisecondDelay) {
         array[index] = value;
         barColours[index] = 100;
         repaint();
-        sleepFor(millisecondsToNano(millisecondDelay));
+        try {
+            Thread.sleep(millisecondDelay);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
     }
     
     public void shuffle() {
