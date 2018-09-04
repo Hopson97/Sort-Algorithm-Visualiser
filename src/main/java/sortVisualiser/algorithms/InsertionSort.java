@@ -30,5 +30,4 @@ public class InsertionSort implements ISortAlgorithm
     public long getDelay() {
         return 2;
     }
-
 }

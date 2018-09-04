@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import sortVisualiser.algorithms.BubbleSort;
 import sortVisualiser.algorithms.ISortAlgorithm;
 import sortVisualiser.algorithms.InsertionSort;
+import sortVisualiser.algorithms.MergeSort;
 import sortVisualiser.algorithms.QuickSort;
 import sortVisualiser.algorithms.SelectionSort;
 import static util.Sleep.secondsToNano;
@@ -32,10 +33,11 @@ public class SortVisualiser {
         window.setVisible(true);
         
         sortQueue = new ArrayList<>();
-        sortQueue.add(new QuickSort());
-        sortQueue.add(new SelectionSort());
-        sortQueue.add(new InsertionSort());
-        sortQueue.add(new BubbleSort());
+        sortQueue.add(new MergeSort());
+        //sortQueue.add(new QuickSort());
+        //sortQueue.add(new SelectionSort());
+        //sortQueue.add(new InsertionSort());
+        //sortQueue.add(new BubbleSort());
     }
    
     private void shuffleAndWait() {
