@@ -6,6 +6,7 @@ sourceCompatibility = '1.8'
 
 if (!hasProperty('mainClass')) {
     ext.mainClass = 'sortVisualiser.SortVisualiser'
+    mainClassName = ext.mainClass
 }
 
 repositories {

@@ -35,11 +35,11 @@ public class SortVisualiser {
         
         sortQueue = new ArrayList<>();
         sortQueue.add(new GnomeSort());
-        //sortQueue.add(new MergeSort());
-        //sortQueue.add(new QuickSort());
-        //sortQueue.add(new SelectionSort());
-        //sortQueue.add(new InsertionSort());
-        //sortQueue.add(new BubbleSort());
+        sortQueue.add(new MergeSort());
+        sortQueue.add(new QuickSort());
+        sortQueue.add(new SelectionSort());
+        sortQueue.add(new InsertionSort());
+        sortQueue.add(new BubbleSort());
     }
    
     private void shuffleAndWait() {
@@ -53,7 +53,7 @@ public class SortVisualiser {
             sleepFor(secondsToNano(1));
             shuffleAndWait();
             algorithm.runSort(sortArray);
-            System.out.println("SORT DONE");
+            
             sortArray.resetColours();
             sortArray.highlightArray();
             sortArray.resetColours();
