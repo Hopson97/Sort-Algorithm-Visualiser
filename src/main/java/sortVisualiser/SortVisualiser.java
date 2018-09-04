@@ -2,6 +2,7 @@ package sortVisualiser;
 
 import java.util.ArrayList;
 import javax.swing.JFrame;
+
 import sortVisualiser.algorithms.BubbleSort;
 import sortVisualiser.algorithms.GnomeSort;
 import sortVisualiser.algorithms.ISortAlgorithm;
@@ -12,25 +13,26 @@ import sortVisualiser.algorithms.SelectionSort;
 
 /**
  * The main class for the sort visualiser GUI
+ *
  * @author Matt Hopson
  */
 public class SortVisualiser {
     private final JFrame window;
-    private final SortArray sortArray;  
+    private final SortArray sortArray;
     private final ArrayList<ISortAlgorithm> sortQueue;
-    
+
     /**
      * Creates the GUI
      */
     public SortVisualiser() {
         window = new JFrame("Sort Visualiser");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+
         sortArray = new SortArray();
         window.add(sortArray);
         window.pack();
         window.setVisible(true);
-        
+
         sortQueue = new ArrayList<>();
         sortQueue.add(new GnomeSort());
         sortQueue.add(new MergeSort());
@@ -39,7 +41,7 @@ public class SortVisualiser {
         sortQueue.add(new InsertionSort());
         sortQueue.add(new BubbleSort());
     }
-   
+
     private void shuffleAndWait() {
         sortArray.shuffle();
         sortArray.resetColours();
@@ -49,7 +51,7 @@ public class SortVisualiser {
             ex.printStackTrace();
         }
     }
-    
+
     public void run() {
         for (ISortAlgorithm algorithm : sortQueue) {
             try {
@@ -61,13 +63,13 @@ public class SortVisualiser {
 
             sortArray.setName(algorithm.getName());
             algorithm.runSort(sortArray);
-            
+
             sortArray.resetColours();
             sortArray.highlightArray();
             sortArray.resetColours();
         }
     }
-    
+
     public static void main(String... args) {
         SortVisualiser sortVisualiser = new SortVisualiser();
         sortVisualiser.run();

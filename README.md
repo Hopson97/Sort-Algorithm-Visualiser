@@ -22,3 +22,12 @@ For now, this just shows a bunch of sorting algorithms, one after the other:
 * Selection Sort
 
 ![screenshot](https://i.imgur.com/TMXTcBr.png)
+
+### Javadoc
+
+```
+git clone https://github.com/Hopson97/Sort-Algorithm-Visualiser.git
+cd Sort-Algorithm-Visualiser
+gradle javadoc
+```
+Then open **build/docs/javadoc/index.html** file.
