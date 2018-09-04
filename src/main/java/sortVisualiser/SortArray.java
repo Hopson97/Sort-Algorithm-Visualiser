@@ -102,11 +102,10 @@ public class SortArray extends JPanel {
         Graphics2D graphics = (Graphics2D)g;
         super.paintComponent(graphics);
 
-        graphics.setColor(Color.black);
+        graphics.setColor(Color.white);
         graphics.setFont(new Font("Verdana", Font.BOLD, 27));
         graphics.drawString(algorithmName, 100, 100);
        
-        graphics.setColor(Color.white);
         for (int x = 0; x < NUM_BARS; x++) {
             int height = getValue(x) * 2;
             int xBegin = x + (BAR_WIDTH - 1) * x;
