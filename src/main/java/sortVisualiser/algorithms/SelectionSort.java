@@ -29,7 +29,7 @@ public class SelectionSort implements ISortAlgorithm {
                     minIndex = j;
                 }
             }
-            array.swap(i, minIndex, 40);
+            array.swap(i, minIndex, getDelay());
         }
     }
 
@@ -40,6 +40,6 @@ public class SelectionSort implements ISortAlgorithm {
 
     @Override
     public long getDelay() {
-        return 40;
+        return 50;
     }
 }
