@@ -3,6 +3,8 @@ package sortVisualiser;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -79,6 +81,19 @@ public class MainMenu extends JPanel {
         addCheckBox(new BubbleSort(),      container);
         
         JButton startButton = new JButton("Begin Visual Sorter");
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ArrayList<ISortAlgorithm> algorithms = new ArrayList<>();
+                for (AlgorithmCheckBox cb : checkBoxes) {
+                    if (cb.isSelected()) {
+                        algorithms.add(cb.getAlgorithm());
+                        System.out.println(cb.getAlgorithm().getName());
+                    }
+                }
+            }
+            
+        });
         startButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         add(container);
