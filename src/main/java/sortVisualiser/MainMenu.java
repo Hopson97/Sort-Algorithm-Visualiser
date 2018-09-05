@@ -1,14 +1,12 @@
 package sortVisualiser;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -18,15 +16,25 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import static sortVisualiser.Main.WIN_HEIGHT;
 import static sortVisualiser.Main.WIN_WIDTH;
+import sortVisualiser.algorithms.BubbleSort;
+import sortVisualiser.algorithms.GnomeSort;
 import sortVisualiser.algorithms.ISortAlgorithm;
+import sortVisualiser.algorithms.InsertionSort;
+import sortVisualiser.algorithms.MergeSort;
+import sortVisualiser.algorithms.QuickSort;
+import sortVisualiser.algorithms.SelectionSort;
 
 /**
  *
  * @author Matthew Hopson
  */
 public class MainMenu extends JPanel {
+    
     private static final Color BACKGROUND_COLOUR = Color.darkGray;
+    private ArrayList<AlgorithmCheckBox> checkBoxes;
+    
     public MainMenu() {
+        checkBoxes = new ArrayList<>();
         setUpGUI();
     }
     
@@ -35,12 +43,13 @@ public class MainMenu extends JPanel {
         return new Dimension(WIN_WIDTH, WIN_HEIGHT);
     }
     
-    private void addCheckBox(String name, JPanel container) {
-        JCheckBox box = new JCheckBox(name, true);
+    private void addCheckBox(ISortAlgorithm algorithm, JPanel panel) {
+        JCheckBox box = new JCheckBox("", true);
         box.setAlignmentX(Component.LEFT_ALIGNMENT);
         box.setBackground(BACKGROUND_COLOUR);
         box.setForeground(Color.WHITE);
-        container.add(box);
+        checkBoxes.add(new AlgorithmCheckBox(algorithm, box));
+        panel.add(box);
     }
     
     public void setUpGUI() {
@@ -62,12 +71,12 @@ public class MainMenu extends JPanel {
         }
         
         container.setAlignmentX(Component.CENTER_ALIGNMENT);
-        addCheckBox("Selection sort",   container);
-        addCheckBox("Quick sort",       container);
-        addCheckBox("Merge sort",       container);
-        addCheckBox("Insertion sort",   container);
-        addCheckBox("Gnome sort",       container);
-        addCheckBox("Bubble sort",      container);
+        addCheckBox(new SelectionSort(),    container);
+        addCheckBox(new QuickSort(),        container);
+        addCheckBox(new MergeSort(),        container);
+        addCheckBox(new InsertionSort(),    container);
+        addCheckBox(new GnomeSort(),        container);
+        addCheckBox(new BubbleSort(),      container);
         
         JButton startButton = new JButton("Begin Visual Sorter");
         startButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -78,9 +87,20 @@ public class MainMenu extends JPanel {
     
     private class AlgorithmCheckBox {
         private final ISortAlgorithm algorithm;
+        private JCheckBox box;
         
-        public AlgorithmCheckBox(ISortAlgorithm algorithm) {
+        public AlgorithmCheckBox(ISortAlgorithm algorithm, JCheckBox box) {
             this.algorithm = algorithm;
+            this.box = box;
+            this.box.setText(algorithm.getName());
+        }
+        
+        public boolean isSelected() {
+            return box.isSelected();
+        }
+        
+        public ISortAlgorithm getAlgorithm() {
+            return algorithm;
         }
     }
     
