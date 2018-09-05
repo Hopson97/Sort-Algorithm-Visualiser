@@ -1,45 +1,33 @@
 package sortVisualiser;
 
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
-import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.SwingWorker;
 
-import sortVisualiser.algorithms.BubbleSort;
-import sortVisualiser.algorithms.GnomeSort;
 import sortVisualiser.algorithms.ISortAlgorithm;
-import sortVisualiser.algorithms.InsertionSort;
-import sortVisualiser.algorithms.MergeSort;
-import sortVisualiser.algorithms.QuickSort;
-import sortVisualiser.algorithms.SelectionSort;
 
 /**
  * The main class for the sort visualiser GUI
  *
  * @author Matt Hopson
  */
-public class SortVisualiser {
-    private final JFrame window;
+public final class SortVisualiser extends Screen {
     private final SortArray sortArray;
     private final ArrayList<ISortAlgorithm> sortQueue;
 
     /**
      * Creates the GUI
+     * @param algorithms List of algorithms to run for visualisation
+     * @param app The main application
      */
-    public SortVisualiser() {
-        window = new JFrame("Sort Visualiser");
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+    public SortVisualiser(ArrayList<ISortAlgorithm> algorithms, MainApp app) {
+        super(app);
         sortArray = new SortArray();
-        window.add(sortArray);
-        window.pack();
-        window.setVisible(true);
+        add(sortArray);
 
-        sortQueue = new ArrayList<>();
-        //sortQueue.add(new GnomeSort());
-        //sortQueue.add(new MergeSort());
-        //sortQueue.add(new QuickSort());
-        //sortQueue.add(new SelectionSort());
-        //sortQueue.add(new InsertionSort());
-        //sortQueue.add(new BubbleSort());
+        sortQueue = algorithms;
     }
 
     private void shuffleAndWait() {
@@ -51,22 +39,28 @@ public class SortVisualiser {
             ex.printStackTrace();
         }
     }
+    
+    public void onOpen() {
+        SwingWorker swingWorker = new SwingWorker() {
+            @Override
+            protected Object doInBackground() throws Exception {
+                for (ISortAlgorithm algorithm : sortQueue) {
+                    shuffleAndWait();
 
-    public void run() {
-        for (ISortAlgorithm algorithm : sortQueue) {
-            try {
-                Thread.sleep(1);
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
+                    sortArray.setName(algorithm.getName());
+                    algorithm.runSort(sortArray);
+
+                    sortArray.resetColours();
+                    sortArray.highlightArray();
+                    sortArray.resetColours();
+                }
+                return null;
             }
-            shuffleAndWait();
-
-            sortArray.setName(algorithm.getName());
-            algorithm.runSort(sortArray);
-
-            sortArray.resetColours();
-            sortArray.highlightArray();
-            sortArray.resetColours();
-        }
+            
+            @Override
+            public void done() {
+                app.popScreen(); 
+            }
+        };
     }
 }

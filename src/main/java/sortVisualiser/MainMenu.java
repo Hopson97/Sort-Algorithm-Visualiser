@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -30,18 +29,14 @@ import sortVisualiser.algorithms.SelectionSort;
  *
  * @author Matthew Hopson
  */
-public final class MainMenu extends JPanel {
+public final class MainMenu extends Screen {
     private static final Color BACKGROUND_COLOUR = Color.darkGray;
     private final ArrayList<AlgorithmCheckBox> checkBoxes;
     
-    public MainMenu() {
+    public MainMenu(MainApp app) {
+        super(app);
         checkBoxes = new ArrayList<>();
         setUpGUI();
-    }
-    
-    @Override
-    public Dimension getPreferredSize() {
-        return new Dimension(WIN_WIDTH, WIN_HEIGHT);
     }
     
     private void addCheckBox(ISortAlgorithm algorithm, JPanel panel) {
@@ -87,11 +82,19 @@ public final class MainMenu extends JPanel {
                     algorithms.add(cb.getAlgorithm());
                 }
             }
+            app.pushScreen(new SortVisualiser(algorithms, app));
         });
         startButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         add(container);
         add(startButton);
+    }
+
+    @Override
+    public void onOpen() {
+        for (AlgorithmCheckBox box : checkBoxes) {
+            box.unselect();
+        }
     }
     
     private class AlgorithmCheckBox {
@@ -102,6 +105,10 @@ public final class MainMenu extends JPanel {
             this.algorithm = algorithm;
             this.box = box;
             this.box.setText(algorithm.getName());
+        }
+        
+        public void unselect() {
+            box.setSelected(false);
         }
         
         public boolean isSelected() {
