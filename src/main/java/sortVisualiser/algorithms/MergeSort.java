@@ -89,7 +89,6 @@ public class MergeSort implements ISortAlgorithm {
 
             mergeSort(array, left, middleIndex);
             mergeSort(array, middleIndex + 1, right);
-
             merge(array, left, middleIndex, right);
         }
     }

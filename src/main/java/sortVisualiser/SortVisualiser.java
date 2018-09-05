@@ -41,26 +41,16 @@ public final class SortVisualiser extends Screen {
     }
     
     public void onOpen() {
-        SwingWorker swingWorker = new SwingWorker() {
-            @Override
-            protected Object doInBackground() throws Exception {
-                for (ISortAlgorithm algorithm : sortQueue) {
-                    shuffleAndWait();
+        for (ISortAlgorithm algorithm : sortQueue) {
+            shuffleAndWait();
 
-                    sortArray.setName(algorithm.getName());
-                    algorithm.runSort(sortArray);
+            sortArray.setName(algorithm.getName());
+            algorithm.runSort(sortArray);
 
-                    sortArray.resetColours();
-                    sortArray.highlightArray();
-                    sortArray.resetColours();
-                }
-                return null;
-            }
-            
-            @Override
-            public void done() {
-                app.popScreen(); 
-            }
-        };
+            sortArray.resetColours();
+            sortArray.highlightArray();
+            sortArray.resetColours();
+        }
+
     }
 }
