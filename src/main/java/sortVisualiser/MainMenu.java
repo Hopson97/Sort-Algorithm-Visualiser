@@ -16,8 +16,8 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import static sortVisualiser.Main.WIN_HEIGHT;
-import static sortVisualiser.Main.WIN_WIDTH;
+import static sortVisualiser.MainApp.WIN_HEIGHT;
+import static sortVisualiser.MainApp.WIN_WIDTH;
 import sortVisualiser.algorithms.BubbleSort;
 import sortVisualiser.algorithms.GnomeSort;
 import sortVisualiser.algorithms.ISortAlgorithm;
@@ -30,10 +30,9 @@ import sortVisualiser.algorithms.SelectionSort;
  *
  * @author Matthew Hopson
  */
-public class MainMenu extends JPanel {
-    
+public final class MainMenu extends JPanel {
     private static final Color BACKGROUND_COLOUR = Color.darkGray;
-    private ArrayList<AlgorithmCheckBox> checkBoxes;
+    private final ArrayList<AlgorithmCheckBox> checkBoxes;
     
     public MainMenu() {
         checkBoxes = new ArrayList<>();
@@ -81,18 +80,13 @@ public class MainMenu extends JPanel {
         addCheckBox(new BubbleSort(),      container);
         
         JButton startButton = new JButton("Begin Visual Sorter");
-        startButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ArrayList<ISortAlgorithm> algorithms = new ArrayList<>();
-                for (AlgorithmCheckBox cb : checkBoxes) {
-                    if (cb.isSelected()) {
-                        algorithms.add(cb.getAlgorithm());
-                        System.out.println(cb.getAlgorithm().getName());
-                    }
+        startButton.addActionListener((ActionEvent e) -> {
+            ArrayList<ISortAlgorithm> algorithms = new ArrayList<>();
+            for (AlgorithmCheckBox cb : checkBoxes) {
+                if (cb.isSelected()) {
+                    algorithms.add(cb.getAlgorithm());
                 }
             }
-            
         });
         startButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         
@@ -102,7 +96,7 @@ public class MainMenu extends JPanel {
     
     private class AlgorithmCheckBox {
         private final ISortAlgorithm algorithm;
-        private JCheckBox box;
+        private final JCheckBox box;
         
         public AlgorithmCheckBox(ISortAlgorithm algorithm, JCheckBox box) {
             this.algorithm = algorithm;
