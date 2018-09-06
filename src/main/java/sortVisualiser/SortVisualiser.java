@@ -26,15 +26,19 @@ public final class SortVisualiser extends Screen {
 
         sortQueue = algorithms;
     }
+    
+    private void longSleep() {
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        } 
+    }
 
     private void shuffleAndWait() {
         sortArray.shuffle();
         sortArray.resetColours();
-        try {
-            Thread.sleep(2);
-        } catch (InterruptedException ex) {
-            ex.printStackTrace();
-        }
+        longSleep();
     }
     
     public void onOpen() {
@@ -53,6 +57,7 @@ public final class SortVisualiser extends Screen {
                     sortArray.resetColours();
                     sortArray.highlightArray();
                     sortArray.resetColours();
+                    longSleep();
                 }
                 return null;
             }
