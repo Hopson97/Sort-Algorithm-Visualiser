@@ -1,7 +1,8 @@
-package sortVisualiser;
+package sortVisualiser.screens;
 
 import java.awt.Dimension;
 import javax.swing.JPanel;
+import sortVisualiser.MainApp;
 import static sortVisualiser.MainApp.WIN_HEIGHT;
 import static sortVisualiser.MainApp.WIN_WIDTH;
 

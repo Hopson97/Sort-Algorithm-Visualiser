@@ -1,4 +1,4 @@
-package sortVisualiser;
+package sortVisualiser.screens;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import sortVisualiser.MainApp;
 import sortVisualiser.algorithms.BubbleSort;
 import sortVisualiser.algorithms.GnomeSort;
 import sortVisualiser.algorithms.ISortAlgorithm;
