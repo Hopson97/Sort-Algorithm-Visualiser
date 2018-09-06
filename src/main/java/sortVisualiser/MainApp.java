@@ -50,7 +50,7 @@ public class MainApp {
     }
     
     public void start() {
-        pushScreen(new MainMenu(this));
+        pushScreen(new MainMenuScreen(this));
     }
     
     public static void main(String... args) {

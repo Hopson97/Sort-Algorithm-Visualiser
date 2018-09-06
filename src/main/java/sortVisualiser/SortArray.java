@@ -29,9 +29,9 @@ public class SortArray extends JPanel {
     
     private ArrayList<Integer> majorKeys;
     
-    Synthesizer synth;
+    private Synthesizer synth;
 
-    public SortArray() {
+    public SortArray(boolean playSounds) {
         try {
             synth = MidiSystem.getSynthesizer();
             synth.open();

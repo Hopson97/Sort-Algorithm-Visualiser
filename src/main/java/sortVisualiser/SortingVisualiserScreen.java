@@ -10,18 +10,19 @@ import sortVisualiser.algorithms.ISortAlgorithm;
  *
  * @author Matt Hopson
  */
-public final class SortVisualiser extends Screen {
+public final class SortingVisualiserScreen extends Screen {
     private final SortArray sortArray;
     private final ArrayList<ISortAlgorithm> sortQueue;
 
     /**
      * Creates the GUI
      * @param algorithms List of algorithms to run for visualisation
+     * @param playSounds Whether or not you want the algorithm to play sounds
      * @param app The main application
      */
-    public SortVisualiser(ArrayList<ISortAlgorithm> algorithms, MainApp app) {
+    public SortingVisualiserScreen(ArrayList<ISortAlgorithm> algorithms, boolean playSounds, MainApp app) {
         super(app);
-        sortArray = new SortArray();
+        sortArray = new SortArray(playSounds);
         add(sortArray);
 
         sortQueue = algorithms;

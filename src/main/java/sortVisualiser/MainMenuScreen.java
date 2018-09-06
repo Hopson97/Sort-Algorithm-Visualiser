@@ -26,11 +26,11 @@ import sortVisualiser.algorithms.SelectionSort;
  *
  * @author Matthew Hopson
  */
-public final class MainMenu extends Screen {
+public final class MainMenuScreen extends Screen {
     private static final Color BACKGROUND_COLOUR = Color.darkGray;
     private final ArrayList<AlgorithmCheckBox> checkBoxes;
     
-    public MainMenu(MainApp app) {
+    public MainMenuScreen(MainApp app) {
         super(app);
         checkBoxes = new ArrayList<>();
         setUpGUI();
@@ -79,7 +79,7 @@ public final class MainMenu extends Screen {
                     algorithms.add(cb.getAlgorithm());
                 }
             }
-            app.pushScreen(new SortVisualiser(algorithms, app));
+            app.pushScreen(new SortingVisualiserScreen(algorithms, true, app));
         });
         startButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         
