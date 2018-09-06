@@ -3,8 +3,6 @@ package sortVisualiser;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.sound.midi.Instrument;
 import javax.sound.midi.MidiChannel;
 import javax.sound.midi.MidiSystem;
@@ -27,17 +25,9 @@ public class SortArray extends JPanel {
     private final int[] barColours;
     private String algorithmName = "";
     
-    private ArrayList<Integer> majorKeys;
-    
-    private Synthesizer synth;
+    private MidiSoundPlayer player;
 
     public SortArray(boolean playSounds) {
-        try {
-            synth = MidiSystem.getSynthesizer();
-            synth.open();
-        } catch (MidiUnavailableException ex) {
-            ex.printStackTrace();
-        }
         setBackground(Color.darkGray);
         array = new int[NUM_BARS];
         barColours = new int[NUM_BARS];
@@ -45,17 +35,7 @@ public class SortArray extends JPanel {
             array[i] = i;
             barColours[i] = 0;
         }
-        
-        majorKeys = new ArrayList<>();
-        for (int i = 0; i < 108; i += 12) {
-            majorKeys.add(i);
-            majorKeys.add(i + 2);
-            majorKeys.add(i + 4);
-            majorKeys.add(i + 5);
-            majorKeys.add(i + 7);
-            majorKeys.add(i + 9);
-            majorKeys.add(i + 11);
-        }
+        player = new MidiSoundPlayer(NUM_BARS);
     }
 
     public int arraySize() {
@@ -80,25 +60,7 @@ public class SortArray extends JPanel {
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-        makeSound((array[firstIndex] + array[secondIndex]) / 2);
-    }
-    
-    
-    private int convertToMajor(int v) {
-        float n = ((float)v / (float)NUM_BARS);
-        int index = (int)(n * (float)majorKeys.size());
-        index = Math.max(1, Math.min(107, index));
-        return majorKeys.get(index);
-    }
-    
-    
-    private void makeSound(int value) {
-        MidiChannel[] channel = synth.getChannels();
-        Instrument[] instruments = synth.getDefaultSoundbank().getInstruments();
-
-        int note = convertToMajor(value);
-        channel[0].programChange(instruments[143].getPatch().getProgram());
-        channel[0].noteOn(note, 50);
+        player.makeSound((array[firstIndex] + array[secondIndex]) / 2);
     }
 
     public void updateSingle(int index, int value, long millisecondDelay) {
@@ -110,8 +72,7 @@ public class SortArray extends JPanel {
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-        
-        makeSound(value);
+        player.makeSound(value);
     }
 
     public void shuffle() {

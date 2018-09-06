@@ -1,6 +1,5 @@
 package sortVisualiser.screens;
 
-import sortVisualiser.screens.Screen;
 import java.util.ArrayList;
 import javax.swing.SwingWorker;
 import sortVisualiser.MainApp;
