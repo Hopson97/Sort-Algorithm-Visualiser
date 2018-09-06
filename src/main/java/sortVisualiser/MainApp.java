@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 /**
- *
+ * The main application point for controlling the program
  * @author Matthew Hopson
  */
 public class MainApp {

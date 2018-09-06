@@ -37,7 +37,7 @@ public class GnomeSort implements ISortAlgorithm {
 
     @Override
     public String getName() {
-        return "Shell sort";
+        return "Gnome sort";
     }
 
     @Override

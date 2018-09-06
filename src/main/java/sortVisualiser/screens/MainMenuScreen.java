@@ -70,7 +70,8 @@ public final class MainMenuScreen extends Screen {
         addCheckBox(new MergeSort(),        container);
         addCheckBox(new InsertionSort(),    container);
         addCheckBox(new GnomeSort(),        container);
-        addCheckBox(new BubbleSort(),      container);
+        addCheckBox(new BubbleSort(),       container);
+        addCheckBox(new GnomeSort(),        container);
         
         JButton startButton = new JButton("Begin Visual Sorter");
         startButton.addActionListener((ActionEvent e) -> {

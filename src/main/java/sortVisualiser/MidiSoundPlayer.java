@@ -8,15 +8,15 @@ import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Synthesizer;
 
 /**
- *
+ * 
  * @author Matthew Hopson
  */
 public class MidiSoundPlayer {
     private final ArrayList<Integer> keys;
     private Synthesizer synth;
-    private MidiChannel channel;
+    private final MidiChannel channel;
     
-    private int inputValueMaximum;
+    private final int inputValueMaximum;
     
     public MidiSoundPlayer(int maxValue) {
         try {
@@ -26,6 +26,7 @@ public class MidiSoundPlayer {
             ex.printStackTrace();
         }
         inputValueMaximum = maxValue;
+        
         
         //Set up midi channel
         channel = synth.getChannels()[0];
