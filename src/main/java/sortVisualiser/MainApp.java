@@ -25,34 +25,38 @@ public class MainApp {
         window.setVisible(true);
     }
     
+    public Screen getCurrentScreen() {
+        return screens.get(screens.size() - 1);
+    }
+    
     public void pushScreen(Screen screen) {
         if (!screens.isEmpty()) {
-            screens.get(screens.size() - 1).setVisible(false); 
+            getCurrentScreen().setVisible(false); 
         }
         screens.add(screen);
         window.add(screen);
-        window.pack();
-        System.out.println("edt: " + SwingUtilities.isEventDispatchThread());
         screen.onOpen();
     }
     
     public void popScreen() {
         if (!screens.isEmpty()) {
-            Screen prev = screens.get(screens.size() - 1);
+            Screen prev = getCurrentScreen();
             prev.setVisible(false);
             screens.remove(prev);
             window.remove(prev);
             if (!screens.isEmpty()) {
-                screens.get(screens.size() - 1).onOpen();
-                screens.get(screens.size() - 1).setVisible(true);
+                getCurrentScreen().onOpen();
+                getCurrentScreen().setVisible(true);
             }
-            else
+            else {
                 window.dispose();
+            }
         }
     }
     
     public void start() {
         pushScreen(new MainMenuScreen(this));
+        window.pack();
     }
     
     public static void main(String... args) {

@@ -42,6 +42,6 @@ public class GnomeSort implements ISortAlgorithm {
 
     @Override
     public long getDelay() {
-        return 5;
+        return 2;
     }
 }

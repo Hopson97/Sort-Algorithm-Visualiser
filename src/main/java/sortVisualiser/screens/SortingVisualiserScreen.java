@@ -55,6 +55,8 @@ public final class SortingVisualiserScreen extends Screen {
                     shuffleAndWait();
 
                     sortArray.setName(algorithm.getName());
+                    sortArray.setAlgorithmDelay(algorithm.getDelay());
+                    
                     algorithm.runSort(sortArray);
 
                     sortArray.resetColours();

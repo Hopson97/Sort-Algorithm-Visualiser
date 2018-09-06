@@ -1,13 +1,7 @@
 package sortVisualiser;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.Random;
-import javax.sound.midi.Instrument;
-import javax.sound.midi.MidiChannel;
-import javax.sound.midi.MidiSystem;
-import javax.sound.midi.MidiUnavailableException;
-import javax.sound.midi.Synthesizer;
 import javax.swing.JPanel;
 
 /**
@@ -24,6 +18,7 @@ public class SortArray extends JPanel {
     private final int[] array;
     private final int[] barColours;
     private String algorithmName = "";
+    private long algorithmDelay = 0;
     
     private MidiSoundPlayer player;
 
@@ -117,8 +112,9 @@ public class SortArray extends JPanel {
         super.paintComponent(graphics);
 
         graphics.setColor(Color.white);
-        graphics.setFont(new Font("Verdana", Font.BOLD, 27));
-        graphics.drawString(algorithmName, 100, 100);
+        graphics.setFont(new Font("Monospaced", Font.BOLD, 25));
+        graphics.drawString(" Current algorithm: " + algorithmName, 10, 30);
+        graphics.drawString("Current step delay: " + algorithmDelay + "ms", 10, 55);
 
         for (int x = 0; x < NUM_BARS; x++) {
             int height = getValue(x) * 2;
@@ -134,7 +130,12 @@ public class SortArray extends JPanel {
         }
     }
 
+    @Override
     public void setName(String algorithmName) {
         this.algorithmName = algorithmName;
+    }
+    
+    public void setAlgorithmDelay(long delay) {
+        algorithmDelay = delay;
     }
 }
