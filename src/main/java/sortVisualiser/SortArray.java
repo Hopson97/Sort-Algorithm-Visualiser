@@ -21,6 +21,7 @@ public class SortArray extends JPanel {
     private long algorithmDelay = 0;
     
     private MidiSoundPlayer player;
+    private boolean playSounds;
 
     public SortArray(boolean playSounds) {
         setBackground(Color.darkGray);
@@ -31,6 +32,7 @@ public class SortArray extends JPanel {
             barColours[i] = 0;
         }
         player = new MidiSoundPlayer(NUM_BARS);
+        this.playSounds = playSounds;
     }
 
     public int arraySize() {
@@ -55,7 +57,9 @@ public class SortArray extends JPanel {
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-        player.makeSound((array[firstIndex] + array[secondIndex]) / 2);
+        if (playSounds) {
+            player.makeSound((array[firstIndex] + array[secondIndex]) / 2);
+        }
     }
 
     public void updateSingle(int index, int value, long millisecondDelay) {
@@ -67,7 +71,9 @@ public class SortArray extends JPanel {
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-        player.makeSound(value);
+        if (playSounds) {
+            player.makeSound(value);
+        }
     }
 
     public void shuffle() {

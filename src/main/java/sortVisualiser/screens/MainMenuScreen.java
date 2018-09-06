@@ -2,6 +2,7 @@ package sortVisualiser.screens;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -46,13 +47,21 @@ public final class MainMenuScreen extends Screen {
         panel.add(box);
     }
     
+    private void initContainer(JPanel p) {
+        p.setLayout(new BoxLayout(p, BoxLayout.PAGE_AXIS));
+        p.setBackground(BACKGROUND_COLOUR);
+    }
+    
     public void setUpGUI() {
-        JPanel container = new JPanel();
-        container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-   
-        setBackground(BACKGROUND_COLOUR);
-        container.setBackground(BACKGROUND_COLOUR);
+        JPanel sortAlgorithmContainer = new JPanel();
+        JPanel optionsContainer = new JPanel();
+        JPanel outerContainer = new JPanel();
+        initContainer(this);
+        initContainer(optionsContainer);
+        initContainer(sortAlgorithmContainer);
+        
+        outerContainer.setBackground(BACKGROUND_COLOUR);
+        outerContainer.setLayout(new FlowLayout(FlowLayout.CENTER, 32, 32));
         
         try {
             ClassLoader loader = getClass().getClassLoader();
@@ -64,15 +73,21 @@ public final class MainMenuScreen extends Screen {
             System.out.println("Unable to load logo");
         }
         
-        container.setAlignmentX(Component.CENTER_ALIGNMENT);
-        addCheckBox(new SelectionSort(),    container);
-        addCheckBox(new QuickSort(),        container);
-        addCheckBox(new MergeSort(),        container);
-        addCheckBox(new InsertionSort(),    container);
-        addCheckBox(new GnomeSort(),        container);
-        addCheckBox(new BubbleSort(),       container);
-        addCheckBox(new GnomeSort(),        container);
+        sortAlgorithmContainer.setAlignmentX(Component.CENTER_ALIGNMENT);
+        addCheckBox(new SelectionSort(),    sortAlgorithmContainer);
+        addCheckBox(new QuickSort(),        sortAlgorithmContainer);
+        addCheckBox(new MergeSort(),        sortAlgorithmContainer);
+        addCheckBox(new InsertionSort(),    sortAlgorithmContainer);
+        addCheckBox(new GnomeSort(),        sortAlgorithmContainer);
+        addCheckBox(new BubbleSort(),       sortAlgorithmContainer);
         
+        JCheckBox soundCheckBox = new JCheckBox("Play Sounds");
+        soundCheckBox.setAlignmentX(Component.LEFT_ALIGNMENT);
+        soundCheckBox.setBackground(BACKGROUND_COLOUR);
+        soundCheckBox.setForeground(Color.WHITE);
+        
+        optionsContainer.add(soundCheckBox);
+       
         JButton startButton = new JButton("Begin Visual Sorter");
         startButton.addActionListener((ActionEvent e) -> {
             ArrayList<ISortAlgorithm> algorithms = new ArrayList<>();
@@ -81,19 +96,27 @@ public final class MainMenuScreen extends Screen {
                     algorithms.add(cb.getAlgorithm());
                 }
             }
-            app.pushScreen(new SortingVisualiserScreen(algorithms, true, app));
+            app.pushScreen(
+                    new SortingVisualiserScreen(
+                            algorithms, 
+                            soundCheckBox.isSelected(), 
+                            app
+                    ));
         });
         startButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         
-        add(container);
+        outerContainer.add(optionsContainer);
+        outerContainer.add(sortAlgorithmContainer);
+        
+        add(outerContainer);
         add(startButton);
     }
 
     @Override
     public void onOpen() {
-        for (AlgorithmCheckBox box : checkBoxes) {
+        checkBoxes.forEach((box) -> {
             box.unselect();
-        }
+        });
     }
     
     private class AlgorithmCheckBox {
