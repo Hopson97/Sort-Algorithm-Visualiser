@@ -28,7 +28,7 @@ public class InsertionSort implements ISortAlgorithm {
                 array.updateSingle(j + 1, array.getValue(j), 5);
                 j--;
             }
-            array.updateSingle(j + 1, key, 2);
+            array.updateSingle(j + 1, key, getDelay());
         }
     }
 

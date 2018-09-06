@@ -9,5 +9,10 @@ gradle-app.setting
 !gradle-wrapper.jar
 .gradletasknamecache
 
+bin/
+.settings
+.classpath
+.project
+
 .idea/
 out/

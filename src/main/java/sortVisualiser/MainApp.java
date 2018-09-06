@@ -54,6 +54,7 @@ public class MainApp {
     }
     
     public static void main(String... args) {
+        System.setProperty("sun.java2d.opengl", "true");
         SwingUtilities.invokeLater(() -> {
             new MainApp().start();
         });

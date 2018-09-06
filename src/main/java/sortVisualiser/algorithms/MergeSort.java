@@ -119,6 +119,6 @@ public class MergeSort implements ISortAlgorithm {
 
     @Override
     public long getDelay() {
-        return 10;
+        return 20;
     }
 }

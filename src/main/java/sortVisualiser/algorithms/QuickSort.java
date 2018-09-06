@@ -23,10 +23,10 @@ public class QuickSort implements ISortAlgorithm {
         for (int j = lowIndex; j <= highIndex - 1; j++) {
             if (array.getValue(j) <= pivotValue) {
                 i++;
-                array.swap(i, j, 30);
+                array.swap(i, j, getDelay());
             }
         }
-        array.swap(i + 1, highIndex, 30);
+        array.swap(i + 1, highIndex, getDelay());
         return i + 1;
     }
 
