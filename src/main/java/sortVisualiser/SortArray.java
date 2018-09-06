@@ -1,6 +1,7 @@
 package sortVisualiser;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,6 +27,8 @@ public class SortArray extends JPanel {
     private final int[] barColours;
     private String algorithmName = "";
     
+    //private ArrayList<Integer> majorKeys;
+    
     Synthesizer synth;
 
     public SortArray() {
@@ -42,6 +45,17 @@ public class SortArray extends JPanel {
             array[i] = i;
             barColours[i] = 0;
         }
+        /*
+        majorKeys = new ArrayList<>();
+        for (int i = 0; i < 108; i += 12) {
+            majorKeys.add(i);
+            majorKeys.add(i + 2);
+            majorKeys.add(i + 4);
+            majorKeys.add(i + 5);
+            majorKeys.add(i + 7);
+            majorKeys.add(i + 9);
+            majorKeys.add(i + 11);
+        }*/
     }
 
     public int arraySize() {
@@ -66,11 +80,24 @@ public class SortArray extends JPanel {
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
+        makeSound((array[firstIndex] + array[secondIndex]) / 2);
     }
     
-    private void makeSound(int value) {
+    /*
+    private int convertToMajor(int v) {
+        float n = ((float)v / (float)NUM_BARS);
+        int index = (int)(n * (float)majorKeys.size());
+        index = Math.max(1, Math.min(107, index));
+        return majorKeys.get(index);
+    }
+    */
+    
+    private void makeSound(int value) {/*
         MidiChannel[] channel = synth.getChannels();
         Instrument[] instruments = synth.getDefaultSoundbank().getInstruments();
+        synth.loadInstrument(instruments[1]);
+        int note = convertToMajor(value);
+        channel[0].noteOn(note, 90);*/
     }
 
     public void updateSingle(int index, int value, long millisecondDelay) {
@@ -82,6 +109,8 @@ public class SortArray extends JPanel {
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
+        
+        makeSound(value);
     }
 
     public void shuffle() {
