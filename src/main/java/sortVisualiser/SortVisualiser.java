@@ -1,9 +1,6 @@
 package sortVisualiser;
 
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
-import javax.swing.JButton;
-import javax.swing.JPanel;
 import javax.swing.SwingWorker;
 
 import sortVisualiser.algorithms.ISortAlgorithm;
@@ -41,7 +38,8 @@ public final class SortVisualiser extends Screen {
     }
     
     public void onOpen() {
-        System.out.println("RUNNING");
+        //This would block the EventDispatchThread, and so
+        //it must run on a worker thread
         SwingWorker swingWorker = new SwingWorker() {
             @Override
             protected Object doInBackground() throws Exception {

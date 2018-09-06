@@ -2,7 +2,6 @@ package sortVisualiser;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -15,8 +14,6 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import static sortVisualiser.MainApp.WIN_HEIGHT;
-import static sortVisualiser.MainApp.WIN_WIDTH;
 import sortVisualiser.algorithms.BubbleSort;
 import sortVisualiser.algorithms.GnomeSort;
 import sortVisualiser.algorithms.ISortAlgorithm;

@@ -2,6 +2,13 @@ package sortVisualiser;
 
 import java.awt.*;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.midi.Instrument;
+import javax.sound.midi.MidiChannel;
+import javax.sound.midi.MidiSystem;
+import javax.sound.midi.MidiUnavailableException;
+import javax.sound.midi.Synthesizer;
 import javax.swing.JPanel;
 
 /**
@@ -18,8 +25,16 @@ public class SortArray extends JPanel {
     private final int[] array;
     private final int[] barColours;
     private String algorithmName = "";
+    
+    Synthesizer synth;
 
     public SortArray() {
+        try {
+            synth = MidiSystem.getSynthesizer();
+            synth.open();
+        } catch (MidiUnavailableException ex) {
+            ex.printStackTrace();
+        }
         setBackground(Color.darkGray);
         array = new int[NUM_BARS];
         barColours = new int[NUM_BARS];
@@ -51,6 +66,11 @@ public class SortArray extends JPanel {
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
+    }
+    
+    private void makeSound(int value) {
+        MidiChannel[] channel = synth.getChannels();
+        Instrument[] instruments = synth.getDefaultSoundbank().getInstruments();
     }
 
     public void updateSingle(int index, int value, long millisecondDelay) {
