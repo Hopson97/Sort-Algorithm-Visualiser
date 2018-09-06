@@ -2,6 +2,7 @@ package sortVisualiser.screens;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
@@ -9,6 +10,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -50,6 +53,7 @@ public final class MainMenuScreen extends Screen {
     private void initContainer(JPanel p) {
         p.setLayout(new BoxLayout(p, BoxLayout.PAGE_AXIS));
         p.setBackground(BACKGROUND_COLOUR);
+        //p.setBorder(BorderFactory.createLineBorder(Color.WHITE));
     }
     
     public void setUpGUI() {
@@ -61,8 +65,8 @@ public final class MainMenuScreen extends Screen {
         initContainer(sortAlgorithmContainer);
         
         outerContainer.setBackground(BACKGROUND_COLOUR);
-        outerContainer.setLayout(new FlowLayout(FlowLayout.CENTER, 32, 32));
-        
+        outerContainer.setLayout(new BoxLayout(outerContainer, BoxLayout.LINE_AXIS));
+        outerContainer.setBorder(BorderFactory.createRaisedBevelBorder());
         try {
             ClassLoader loader = getClass().getClassLoader();
             BufferedImage image = ImageIO.read(new File(loader.getResource("logo.png").getFile()));
@@ -106,9 +110,13 @@ public final class MainMenuScreen extends Screen {
         startButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         outerContainer.add(optionsContainer);
+        outerContainer.add(Box.createRigidArea(new Dimension(5,0)));
         outerContainer.add(sortAlgorithmContainer);
         
+        int gap = 15;
+        add(Box.createRigidArea(new Dimension(0, gap)));
         add(outerContainer);
+        add(Box.createRigidArea(new Dimension(0, gap)));
         add(startButton);
     }
 
