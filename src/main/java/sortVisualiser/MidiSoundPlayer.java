@@ -31,7 +31,11 @@ public class MidiSoundPlayer {
         //Set up midi channel
         channel = synth.getChannels()[0];
         Instrument[] instruments = synth.getDefaultSoundbank().getInstruments();
-        channel.programChange(instruments[143].getPatch().getProgram());
+        int index = 143;
+        if (instruments.length < 144) {
+            index = 2;
+        }
+        channel.programChange(instruments[index].getPatch().getProgram());
         
         //Set up keys
         keys = new ArrayList<>();
