@@ -23,6 +23,8 @@ public class SortArray extends JPanel {
     private MidiSoundPlayer player;
     private boolean playSounds;
 
+    private int steps = 0; // Number of steps (changes to the array) the current algorithm has taken so far
+
     public SortArray(boolean playSounds) {
         setBackground(Color.darkGray);
         array = new int[NUM_BARS];
@@ -43,28 +45,7 @@ public class SortArray extends JPanel {
         return array[index];
     }
 
-    public void swap(int firstIndex, int secondIndex, long millisecondDelay) {
-        int temp = array[firstIndex];
-        array[firstIndex] = array[secondIndex];
-        array[secondIndex] = temp;
-
-        barColours[firstIndex] = 100;
-        barColours[secondIndex] = 100;
-
-        repaint();
-        try {
-            Thread.sleep(millisecondDelay);
-        } catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-        if (playSounds) {
-            player.makeSound((array[firstIndex] + array[secondIndex]) / 2);
-        }
-    }
-
-    public void updateSingle(int index, int value, long millisecondDelay) {
-        array[index] = value;
-        barColours[index] = 100;
+    private void finaliseUpdate(int value,  long millisecondDelay, boolean isStep) {
         repaint();
         try {
             Thread.sleep(millisecondDelay);
@@ -74,19 +55,41 @@ public class SortArray extends JPanel {
         if (playSounds) {
             player.makeSound(value);
         }
+        if (isStep) 
+            steps++;
+    }
+
+    public void swap(int firstIndex, int secondIndex, long millisecondDelay, boolean isStep) {
+        int temp = array[firstIndex];
+        array[firstIndex] = array[secondIndex];
+        array[secondIndex] = temp;
+
+        barColours[firstIndex] = 100;
+        barColours[secondIndex] = 100;
+
+        finaliseUpdate((array[firstIndex] + array[secondIndex]) / 2, millisecondDelay, isStep);
+    }
+
+    public void updateSingle(int index, int value, long millisecondDelay, boolean isStep) {
+        array[index] = value;
+        barColours[index] = 100;
+        finaliseUpdate(value, millisecondDelay, isStep);
+        repaint();
     }
 
     public void shuffle() {
+        steps = 0;
         Random rng = new Random();
         for (int i = 0; i < arraySize(); i++) {
             int swapWithIndex = rng.nextInt(arraySize() - 1);
-            swap(i, swapWithIndex, 5);
+            swap(i, swapWithIndex, 5, false);
         }
+        steps = 0;
     }
 
     public void highlightArray() {
         for (int i = 0; i < arraySize(); i++) {
-            updateSingle(i, getValue(i), 5);
+            updateSingle(i, getValue(i), 5, false);
         }
     }
 
@@ -119,8 +122,9 @@ public class SortArray extends JPanel {
 
         graphics.setColor(Color.white);
         graphics.setFont(new Font("Monospaced", Font.BOLD, 25));
-        graphics.drawString(" Current algorithm: " + algorithmName, 10, 30);
+        graphics.drawString(" Current algorithm: " + algorithmName,         10, 30);
         graphics.drawString("Current step delay: " + algorithmDelay + "ms", 10, 55);
+        graphics.drawString("   Algorithm steps: " + steps + " steps",      10, 80);
 
         for (int x = 0; x < NUM_BARS; x++) {
             int height = getValue(x) * 2;
@@ -128,10 +132,14 @@ public class SortArray extends JPanel {
             int yBegin = WIN_HEIGHT - height;
 
             int val = barColours[x] * 2;
-            graphics.setColor(new Color(255, 255 - val, 255 - val));
+            if (val > 190) {
+                graphics.setColor(new Color(255 - val, 255, 255 - val));
+            } else {
+                graphics.setColor(new Color(255, 255 - val, 255 - val));
+            }
             graphics.fillRect(xBegin, yBegin, BAR_WIDTH, height);
             if (barColours[x] > 0) {
-                barColours[x] -= 10;
+                barColours[x] -= 5;
             }
         }
     }

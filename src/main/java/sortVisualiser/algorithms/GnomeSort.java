@@ -29,7 +29,7 @@ public class GnomeSort implements ISortAlgorithm {
             if (array.getValue(index) >= array.getValue(index - 1)) {
                 index++;
             } else {
-                array.swap(index, index - 1, getDelay());
+                array.swap(index, index - 1, getDelay(), true);
                 index--;
             }
         }

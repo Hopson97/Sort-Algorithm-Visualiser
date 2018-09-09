@@ -47,23 +47,23 @@ public class MergeSort implements ISortAlgorithm {
         int i = 0, j = 0, k = left;
         while (i < leftSize && j < rightSize) {
             if (leftArray[i] <= rightArray[j]) {
-                array.updateSingle(k, leftArray[i], getDelay());
+                array.updateSingle(k, leftArray[i], getDelay(), true);
                 i++;
             } else {
-                array.updateSingle(k, rightArray[j], getDelay());
+                array.updateSingle(k, rightArray[j], getDelay(), true);
                 j++;
             }
             k++;
         }
 
         while (i < leftSize) {
-            array.updateSingle(k, leftArray[i], getDelay());
+            array.updateSingle(k, leftArray[i], getDelay(), true);
             i++;
             k++;
         }
 
         while (j < rightSize) {
-            array.updateSingle(k, rightArray[j], getDelay());
+            array.updateSingle(k, rightArray[j], getDelay(), true);
             j++;
             k++;
         }
