@@ -3,14 +3,12 @@ package sortVisualiser.screens;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -26,6 +24,8 @@ import sortVisualiser.algorithms.InsertionSort;
 import sortVisualiser.algorithms.MergeSort;
 import sortVisualiser.algorithms.QuickSort;
 import sortVisualiser.algorithms.SelectionSort;
+import sortVisualiser.algorithms.HeapSort;
+
 
 /**
  *
@@ -66,7 +66,7 @@ public final class MainMenuScreen extends Screen {
         
         outerContainer.setBackground(BACKGROUND_COLOUR);
         outerContainer.setLayout(new BoxLayout(outerContainer, BoxLayout.LINE_AXIS));
-        outerContainer.setBorder(BorderFactory.createRaisedBevelBorder());
+
         try {
             ClassLoader loader = getClass().getClassLoader();
             BufferedImage image = ImageIO.read(new File(loader.getResource("logo.png").getFile()));
@@ -78,12 +78,13 @@ public final class MainMenuScreen extends Screen {
         }
         
         sortAlgorithmContainer.setAlignmentX(Component.CENTER_ALIGNMENT);
+        addCheckBox(new BubbleSort(),       sortAlgorithmContainer);
         addCheckBox(new SelectionSort(),    sortAlgorithmContainer);
         addCheckBox(new QuickSort(),        sortAlgorithmContainer);
         addCheckBox(new MergeSort(),        sortAlgorithmContainer);
         addCheckBox(new InsertionSort(),    sortAlgorithmContainer);
+        addCheckBox(new HeapSort(),         sortAlgorithmContainer);
         addCheckBox(new GnomeSort(),        sortAlgorithmContainer);
-        addCheckBox(new BubbleSort(),       sortAlgorithmContainer);
         
         JCheckBox soundCheckBox = new JCheckBox("Play Sounds");
         soundCheckBox.setAlignmentX(Component.LEFT_ALIGNMENT);
