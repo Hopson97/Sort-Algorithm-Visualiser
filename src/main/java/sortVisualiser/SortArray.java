@@ -23,7 +23,7 @@ public class SortArray extends JPanel {
     private MidiSoundPlayer player;
     private boolean playSounds;
 
-    private int steps = 0; // Number of steps (changes to the array) the current algorithm has taken so far
+    private int arrayChanges = 0; // Number of changes to the array the current algorithm has taken so far
 
     public SortArray(boolean playSounds) {
         setBackground(Color.darkGray);
@@ -56,7 +56,7 @@ public class SortArray extends JPanel {
             player.makeSound(value);
         }
         if (isStep) 
-            steps++;
+            arrayChanges++;
     }
 
     public void swap(int firstIndex, int secondIndex, long millisecondDelay, boolean isStep) {
@@ -78,13 +78,13 @@ public class SortArray extends JPanel {
     }
 
     public void shuffle() {
-        steps = 0;
+        arrayChanges = 0;
         Random rng = new Random();
         for (int i = 0; i < arraySize(); i++) {
             int swapWithIndex = rng.nextInt(arraySize() - 1);
             swap(i, swapWithIndex, 5, false);
         }
-        steps = 0;
+        arrayChanges = 0;
     }
 
     public void highlightArray() {
@@ -124,7 +124,7 @@ public class SortArray extends JPanel {
         graphics.setFont(new Font("Monospaced", Font.BOLD, 25));
         graphics.drawString(" Current algorithm: " + algorithmName,         10, 30);
         graphics.drawString("Current step delay: " + algorithmDelay + "ms", 10, 55);
-        graphics.drawString("   Algorithm steps: " + steps + " steps",      10, 80);
+        graphics.drawString("Array Changes     : " + arrayChanges,          10, 80);
 
         for (int x = 0; x < NUM_BARS; x++) {
             int height = getValue(x) * 2;
