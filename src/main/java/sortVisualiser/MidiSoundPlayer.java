@@ -35,7 +35,7 @@ public class MidiSoundPlayer {
         if (instruments.length < 144) {
             index = 2;
         }
-        channel.programChange(instruments[1].getPatch().getProgram());
+        channel.programChange(instruments[index].getPatch().getProgram());
         
         //Set up keys
         keys = new ArrayList<>();

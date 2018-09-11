@@ -46,6 +46,6 @@ public class HeapSort implements ISortAlgorithm {
 
     @Override
     public long getDelay() {
-        return 30;
+        return 20;
     }
 }

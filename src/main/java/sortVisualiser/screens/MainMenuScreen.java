@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import sortVisualiser.MainApp;
 import sortVisualiser.algorithms.BubbleSort;
+import sortVisualiser.algorithms.CycleSort;
 import sortVisualiser.algorithms.GnomeSort;
 import sortVisualiser.algorithms.ISortAlgorithm;
 import sortVisualiser.algorithms.InsertionSort;
@@ -81,6 +82,7 @@ public final class MainMenuScreen extends Screen {
         sortAlgorithmContainer.setAlignmentX(Component.CENTER_ALIGNMENT);
         addCheckBox(new BubbleSort(),       sortAlgorithmContainer);
         addCheckBox(new SelectionSort(),    sortAlgorithmContainer);
+        addCheckBox(new CycleSort(),        sortAlgorithmContainer);
         addCheckBox(new QuickSort(),        sortAlgorithmContainer);
         addCheckBox(new PancakeSort(),      sortAlgorithmContainer);
         addCheckBox(new MergeSort(),        sortAlgorithmContainer);

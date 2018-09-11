@@ -40,6 +40,6 @@ public class SelectionSort implements ISortAlgorithm {
 
     @Override
     public long getDelay() {
-        return 50;
+        return 120;
     }
 }

@@ -39,6 +39,6 @@ public class InsertionSort implements ISortAlgorithm {
 
     @Override
     public long getDelay() {
-        return 2;
+        return 1;
     }
 }
