@@ -30,21 +30,22 @@ public class MidiSoundPlayer {
         
         //Set up midi channel
         channel = synth.getChannels()[0];
+
+        //Electric grand piano sounds the best, so it tries to find that.
+        //Sometimes it is not supported, so it defaults to 143
         Instrument[] instruments = synth.getDefaultSoundbank().getInstruments();
+        boolean found = false;
         int index = -1;
         for (Instrument i : instruments) {
             index++;
             if (i.getName().equals("Electric Grand Piano")) {
+                found = true;
                 break;
             }
-            
         }
-        System.out.println("Index: " + index);
-        //int index = 143;
-        //if (instruments.length < 144) {
-         //   index = 2;
-         System.out.println("piano: '" + instruments[index].getName() + "'");
-        //}
+        if (!found) {
+            index = 143;
+        }
         channel.programChange(instruments[index].getPatch().getProgram());
         
         //Set up keys
