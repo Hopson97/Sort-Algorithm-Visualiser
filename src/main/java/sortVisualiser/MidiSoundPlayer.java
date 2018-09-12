@@ -17,7 +17,8 @@ public class MidiSoundPlayer {
     private final MidiChannel channel;
     
     private final int inputValueMaximum;
-    
+    private static int CACHED_INDEX = -1;
+
     public MidiSoundPlayer(int maxValue) {
         try {
             synth = MidiSystem.getSynthesizer();
@@ -34,19 +35,23 @@ public class MidiSoundPlayer {
         //Electric grand piano sounds the best, so it tries to find that.
         //Sometimes it is not supported, so it defaults to 143
         Instrument[] instruments = synth.getDefaultSoundbank().getInstruments();
-        boolean found = false;
-        int index = -1;
-        for (Instrument i : instruments) {
-            index++;
-            if (i.getName().equals("Electric Grand Piano")) {
-                found = true;
-                break;
+        if (CACHED_INDEX == - 1) {
+            boolean found = false;
+            int index = -1;
+            for (Instrument i : instruments) {
+                index++;
+                if (i.getName().equals("Electric Grand Piano")) {
+                    found = true;
+                    break;
+                }
             }
+            if (!found) {
+                index = 143;
+            }
+            CACHED_INDEX = index;
         }
-        if (!found) {
-            index = 143;
-        }
-        channel.programChange(instruments[index].getPatch().getProgram());
+
+        channel.programChange(instruments[CACHED_INDEX].getPatch().getProgram());
         
         //Set up keys
         keys = new ArrayList<>();
