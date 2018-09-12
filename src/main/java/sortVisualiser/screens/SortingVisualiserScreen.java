@@ -32,7 +32,7 @@ public final class SortingVisualiserScreen extends Screen {
     
     private void longSleep() {
         try {
-            Thread.sleep(500);
+            Thread.sleep(1000);
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         } 
@@ -50,7 +50,11 @@ public final class SortingVisualiserScreen extends Screen {
         SwingWorker swingWorker = new SwingWorker() {
             @Override
             protected Object doInBackground() throws Exception {
-                System.out.println("RUNNING");
+                try {
+                    Thread.sleep(250);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                } 
                 for (ISortAlgorithm algorithm : sortQueue) {
                     shuffleAndWait();
 

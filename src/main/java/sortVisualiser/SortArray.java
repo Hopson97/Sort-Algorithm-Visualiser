@@ -121,10 +121,10 @@ public class SortArray extends JPanel {
         super.paintComponent(graphics);
 
         graphics.setColor(Color.white);
-        graphics.setFont(new Font("Monospaced", Font.BOLD, 25));
+        graphics.setFont(new Font("Monospaced", Font.BOLD, 20));
         graphics.drawString(" Current algorithm: " + algorithmName,         10, 30);
         graphics.drawString("Current step delay: " + algorithmDelay + "ms", 10, 55);
-        graphics.drawString("Array Changes     : " + arrayChanges,          10, 80);
+        graphics.drawString("     Array Changes: " + arrayChanges,          10, 80);
 
         for (int x = 0; x < NUM_BARS; x++) {
             int height = getValue(x) * 2;
