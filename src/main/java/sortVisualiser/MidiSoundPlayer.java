@@ -46,7 +46,7 @@ public class MidiSoundPlayer {
                 }
             }
             if (!found) {
-                index = 143;
+                index = 2;
             }
             CACHED_INDEX = index;
         }
