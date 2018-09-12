@@ -25,6 +25,7 @@ import sortVisualiser.algorithms.InsertionSort;
 import sortVisualiser.algorithms.MergeSort;
 import sortVisualiser.algorithms.QuickSort;
 import sortVisualiser.algorithms.SelectionSort;
+import sortVisualiser.algorithms.StoogeSort;
 import sortVisualiser.algorithms.HeapSort;
 import sortVisualiser.algorithms.PancakeSort;
 
@@ -83,6 +84,7 @@ public final class MainMenuScreen extends Screen {
         addCheckBox(new BubbleSort(),       sortAlgorithmContainer);
         addCheckBox(new SelectionSort(),    sortAlgorithmContainer);
         addCheckBox(new CycleSort(),        sortAlgorithmContainer);
+        addCheckBox(new StoogeSort(),       sortAlgorithmContainer);
         addCheckBox(new QuickSort(),        sortAlgorithmContainer);
         addCheckBox(new PancakeSort(),      sortAlgorithmContainer);
         addCheckBox(new MergeSort(),        sortAlgorithmContainer);

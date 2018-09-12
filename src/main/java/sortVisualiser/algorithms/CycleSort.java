@@ -15,6 +15,7 @@ public class CycleSort implements ISortAlgorithm {
 
         }
     }
+    
     private CycleResult doCycle(int begin, int position, int value, SortArray array, boolean canFinishEarly) {
         position = begin;
         for (int i = begin + 1; i < array.arraySize(); i++) {
@@ -62,6 +63,6 @@ public class CycleSort implements ISortAlgorithm {
 
     @Override
     public long getDelay() {
-        return 50;
+        return 125;
     }
 }
