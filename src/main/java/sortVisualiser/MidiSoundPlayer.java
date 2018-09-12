@@ -33,18 +33,17 @@ public class MidiSoundPlayer {
         Instrument[] instruments = synth.getDefaultSoundbank().getInstruments();
         int index = -1;
         for (Instrument i : instruments) {
+            index++;
             if (i.getName().equals("Electric Grand Piano")) {
                 break;
             }
-            index++;
+            
         }
-        if (index == -1) {
-            index = 0;
-        }
+        System.out.println("Index: " + index);
         //int index = 143;
         //if (instruments.length < 144) {
          //   index = 2;
-         //   System.out.println("piano: " + instruments[index].getName());
+         System.out.println("piano: '" + instruments[index].getName() + "'");
         //}
         channel.programChange(instruments[index].getPatch().getProgram());
         
