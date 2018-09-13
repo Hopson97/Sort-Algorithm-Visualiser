@@ -1,4 +1,4 @@
-package sortVisualiser;
+package sortvisualiser;
 
 import java.awt.*;
 import java.util.Random;

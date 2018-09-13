@@ -1,6 +1,6 @@
-package sortVisualiser.Util;
+package sortvisualiser.util;
 
-import sortVisualiser.SortArray;
+import sortvisualiser.SortArray;
 
 public class Util {
     public static int findMaxValueIndex(SortArray array, int upToIndex) {

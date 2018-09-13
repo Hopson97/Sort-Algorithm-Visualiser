@@ -1,4 +1,4 @@
-package sortVisualiser.screens;
+package sortvisualiser.screens;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -16,18 +16,18 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import sortVisualiser.MainApp;
-import sortVisualiser.algorithms.BubbleSort;
-import sortVisualiser.algorithms.CycleSort;
-import sortVisualiser.algorithms.GnomeSort;
-import sortVisualiser.algorithms.ISortAlgorithm;
-import sortVisualiser.algorithms.InsertionSort;
-import sortVisualiser.algorithms.MergeSort;
-import sortVisualiser.algorithms.QuickSort;
-import sortVisualiser.algorithms.SelectionSort;
-import sortVisualiser.algorithms.StoogeSort;
-import sortVisualiser.algorithms.HeapSort;
-import sortVisualiser.algorithms.PancakeSort;
+import sortvisualiser.MainApp;
+import sortvisualiser.algorithms.BubbleSort;
+import sortvisualiser.algorithms.CycleSort;
+import sortvisualiser.algorithms.GnomeSort;
+import sortvisualiser.algorithms.ISortAlgorithm;
+import sortvisualiser.algorithms.InsertionSort;
+import sortvisualiser.algorithms.MergeSort;
+import sortvisualiser.algorithms.QuickSort;
+import sortvisualiser.algorithms.SelectionSort;
+import sortvisualiser.algorithms.StoogeSort;
+import sortvisualiser.algorithms.HeapSort;
+import sortvisualiser.algorithms.PancakeSort;
 
 
 /**
