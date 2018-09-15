@@ -1,5 +1,6 @@
 package sortVisualiser.screens;
 
+import java.awt.BorderLayout;
 import java.util.ArrayList;
 
 import javax.swing.SwingWorker;
@@ -25,8 +26,9 @@ public final class SortingVisualiserScreen extends Screen {
      */
     public SortingVisualiserScreen(ArrayList<ISortAlgorithm> algorithms, boolean playSounds, MainApp app) {
         super(app);
+        setLayout(new BorderLayout());
         sortArray = new SortArray(playSounds);
-        add(sortArray);
+        add(sortArray, BorderLayout.CENTER);
 
         sortQueue = algorithms;
     }
