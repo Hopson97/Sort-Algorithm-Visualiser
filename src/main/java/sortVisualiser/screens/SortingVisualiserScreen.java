@@ -1,11 +1,12 @@
-package sortvisualiser.screens;
+package sortVisualiser.screens;
 
 import java.util.ArrayList;
-import javax.swing.SwingWorker;
-import sortvisualiser.MainApp;
-import sortvisualiser.SortArray;
 
-import sortvisualiser.algorithms.ISortAlgorithm;
+import javax.swing.SwingWorker;
+
+import sortVisualiser.MainApp;
+import sortVisualiser.SortArray;
+import sortVisualiser.algorithms.ISortAlgorithm;
 
 /**
  * The main class for the sort visualiser GUI

@@ -1,6 +1,6 @@
-package sortvisualiser.algorithms;
+package sortVisualiser.algorithms;
 
-import sortvisualiser.SortArray;
+import sortVisualiser.SortArray;
 
 /**
  * Base interface for the sort algorithms

@@ -1,7 +1,7 @@
-package sortvisualiser;
+package sortVisualiser;
 
-import sortvisualiser.screens.MainMenuScreen;
-import sortvisualiser.screens.Screen;
+import sortVisualiser.screens.MainMenuScreen;
+import sortVisualiser.screens.Screen;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;

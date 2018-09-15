@@ -1,7 +1,7 @@
-package sortvisualiser.algorithms;
+package sortVisualiser.algorithms;
 
-import sortvisualiser.SortArray;
-import sortvisualiser.util.Util;
+import sortVisualiser.SortArray;
+import sortVisualiser.Util.Util;
 
 public class PancakeSort implements ISortAlgorithm {
     private void flip(SortArray array, int i) {
