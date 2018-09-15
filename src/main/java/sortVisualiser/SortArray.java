@@ -1,7 +1,15 @@
 package sortVisualiser;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
+
 import javax.swing.JPanel;
 
 /**
@@ -120,12 +128,16 @@ public class SortArray extends JPanel {
         Graphics2D graphics = (Graphics2D) g;
         super.paintComponent(graphics);
 
+        Map<RenderingHints.Key, Object> renderingHints = new HashMap<>();
+        renderingHints.put(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        graphics.addRenderingHints(renderingHints);
+
         graphics.setColor(Color.WHITE);
         graphics.setFont(new Font("Monospaced", Font.BOLD, 20));
         graphics.drawString(" Current algorithm: " + algorithmName,         10, 30);
         graphics.drawString("Current step delay: " + algorithmDelay + "ms", 10, 55);
         graphics.drawString("     Array Changes: " + arrayChanges,          10, 80);
-
+         
         for (int x = 0; x < NUM_BARS; x++) {
             int height = getValue(x) * 2;
             int xBegin = x + (BAR_WIDTH - 1) * x;
