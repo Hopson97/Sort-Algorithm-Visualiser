@@ -48,9 +48,9 @@ public final class SortingVisualiserScreen extends Screen {
     public void onOpen() {
         //This would block the EventDispatchThread, and so
         //it must run on a worker thread
-        SwingWorker swingWorker = new SwingWorker() {
+        SwingWorker<Void, Void> swingWorker = new SwingWorker<Void,Void>() {
             @Override
-            protected Object doInBackground() throws Exception {
+            protected Void doInBackground() throws Exception {
                 try {
                     Thread.sleep(250);
                 } catch (InterruptedException ex) {
