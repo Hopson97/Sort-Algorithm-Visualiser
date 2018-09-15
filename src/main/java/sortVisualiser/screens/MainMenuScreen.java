@@ -1,4 +1,4 @@
-package sortvisualiser.screens;
+package sortVisualiser.screens;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.imageio.ImageIO;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -16,18 +17,19 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import sortvisualiser.MainApp;
-import sortvisualiser.algorithms.BubbleSort;
-import sortvisualiser.algorithms.CycleSort;
-import sortvisualiser.algorithms.GnomeSort;
-import sortvisualiser.algorithms.ISortAlgorithm;
-import sortvisualiser.algorithms.InsertionSort;
-import sortvisualiser.algorithms.MergeSort;
-import sortvisualiser.algorithms.QuickSort;
-import sortvisualiser.algorithms.SelectionSort;
-import sortvisualiser.algorithms.StoogeSort;
-import sortvisualiser.algorithms.HeapSort;
-import sortvisualiser.algorithms.PancakeSort;
+
+import sortVisualiser.MainApp;
+import sortVisualiser.algorithms.BubbleSort;
+import sortVisualiser.algorithms.CycleSort;
+import sortVisualiser.algorithms.GnomeSort;
+import sortVisualiser.algorithms.HeapSort;
+import sortVisualiser.algorithms.ISortAlgorithm;
+import sortVisualiser.algorithms.InsertionSort;
+import sortVisualiser.algorithms.MergeSort;
+import sortVisualiser.algorithms.PancakeSort;
+import sortVisualiser.algorithms.QuickSort;
+import sortVisualiser.algorithms.SelectionSort;
+import sortVisualiser.algorithms.StoogeSort;
 
 
 /**
@@ -35,7 +37,7 @@ import sortvisualiser.algorithms.PancakeSort;
  * @author Matthew Hopson
  */
 public final class MainMenuScreen extends Screen {
-    private static final Color BACKGROUND_COLOUR = Color.darkGray;
+    private static final Color BACKGROUND_COLOUR = Color.DARK_GRAY;
     private final ArrayList<AlgorithmCheckBox> checkBoxes;
     
     public MainMenuScreen(MainApp app) {

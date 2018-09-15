@@ -1,4 +1,4 @@
-package sortvisualiser;
+package sortVisualiser;
 
 import java.util.ArrayList;
 import javax.sound.midi.Instrument;

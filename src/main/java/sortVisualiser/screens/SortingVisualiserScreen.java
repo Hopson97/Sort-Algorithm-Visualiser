@@ -1,11 +1,13 @@
-package sortvisualiser.screens;
+package sortVisualiser.screens;
 
+import java.awt.BorderLayout;
 import java.util.ArrayList;
-import javax.swing.SwingWorker;
-import sortvisualiser.MainApp;
-import sortvisualiser.SortArray;
 
-import sortvisualiser.algorithms.ISortAlgorithm;
+import javax.swing.SwingWorker;
+
+import sortVisualiser.MainApp;
+import sortVisualiser.SortArray;
+import sortVisualiser.algorithms.ISortAlgorithm;
 
 /**
  * The main class for the sort visualiser GUI
@@ -24,8 +26,9 @@ public final class SortingVisualiserScreen extends Screen {
      */
     public SortingVisualiserScreen(ArrayList<ISortAlgorithm> algorithms, boolean playSounds, MainApp app) {
         super(app);
+        setLayout(new BorderLayout());
         sortArray = new SortArray(playSounds);
-        add(sortArray);
+        add(sortArray, BorderLayout.CENTER);
 
         sortQueue = algorithms;
     }
@@ -47,9 +50,9 @@ public final class SortingVisualiserScreen extends Screen {
     public void onOpen() {
         //This would block the EventDispatchThread, and so
         //it must run on a worker thread
-        SwingWorker swingWorker = new SwingWorker() {
+        SwingWorker<Void, Void> swingWorker = new SwingWorker<Void,Void>() {
             @Override
-            protected Object doInBackground() throws Exception {
+            protected Void doInBackground() throws Exception {
                 try {
                     Thread.sleep(250);
                 } catch (InterruptedException ex) {
