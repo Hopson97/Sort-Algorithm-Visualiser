@@ -26,7 +26,7 @@ public class SortArray extends JPanel {
     private int arrayChanges = 0; // Number of changes to the array the current algorithm has taken so far
 
     public SortArray(boolean playSounds) {
-        setBackground(Color.darkGray);
+        setBackground(Color.DARK_GRAY);
         array = new int[NUM_BARS];
         barColours = new int[NUM_BARS];
         for (int i = 0; i < NUM_BARS; i++) {
@@ -120,7 +120,7 @@ public class SortArray extends JPanel {
         Graphics2D graphics = (Graphics2D) g;
         super.paintComponent(graphics);
 
-        graphics.setColor(Color.white);
+        graphics.setColor(Color.WHITE);
         graphics.setFont(new Font("Monospaced", Font.BOLD, 20));
         graphics.drawString(" Current algorithm: " + algorithmName,         10, 30);
         graphics.drawString("Current step delay: " + algorithmDelay + "ms", 10, 55);

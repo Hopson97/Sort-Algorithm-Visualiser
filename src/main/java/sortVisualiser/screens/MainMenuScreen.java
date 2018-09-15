@@ -37,7 +37,7 @@ import sortVisualiser.algorithms.StoogeSort;
  * @author Matthew Hopson
  */
 public final class MainMenuScreen extends Screen {
-    private static final Color BACKGROUND_COLOUR = Color.darkGray;
+    private static final Color BACKGROUND_COLOUR = Color.DARK_GRAY;
     private final ArrayList<AlgorithmCheckBox> checkBoxes;
     
     public MainMenuScreen(MainApp app) {
