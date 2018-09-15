@@ -1,6 +1,6 @@
-package sortVisualiser.algorithms;
+package sortvisualiser.algorithms;
 
-import sortVisualiser.SortArray;
+import sortvisualiser.SortArray;
 
 /**
  * Selection sort implementation

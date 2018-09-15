@@ -1,13 +1,13 @@
-package sortVisualiser.screens;
+package sortvisualiser.screens;
 
-import static sortVisualiser.MainApp.WIN_HEIGHT;
-import static sortVisualiser.MainApp.WIN_WIDTH;
+import static sortvisualiser.MainApp.WIN_HEIGHT;
+import static sortvisualiser.MainApp.WIN_WIDTH;
 
 import java.awt.Dimension;
 
 import javax.swing.JPanel;
 
-import sortVisualiser.MainApp;
+import sortvisualiser.MainApp;
 
 /**
  * 

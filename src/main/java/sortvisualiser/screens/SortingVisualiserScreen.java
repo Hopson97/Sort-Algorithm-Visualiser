@@ -1,13 +1,13 @@
-package sortVisualiser.screens;
+package sortvisualiser.screens;
 
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 
 import javax.swing.SwingWorker;
 
-import sortVisualiser.MainApp;
-import sortVisualiser.SortArray;
-import sortVisualiser.algorithms.ISortAlgorithm;
+import sortvisualiser.MainApp;
+import sortvisualiser.SortArray;
+import sortvisualiser.algorithms.ISortAlgorithm;
 
 /**
  * The main class for the sort visualiser GUI

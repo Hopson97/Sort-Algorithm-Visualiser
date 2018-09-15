@@ -1,4 +1,4 @@
-package sortVisualiser;
+package sortvisualiser;
 
 import java.awt.Color;
 import java.awt.Dimension;
