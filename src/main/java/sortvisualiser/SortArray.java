@@ -1,11 +1,13 @@
 package sortvisualiser;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -18,11 +20,11 @@ import javax.swing.JPanel;
  * @author mhops
  */
 public class SortArray extends JPanel {
-    public static final int WIN_WIDTH = 1280;
-    public static final int WIN_HEIGHT = 720;
-    private static final int BAR_WIDTH = 5;
-    private static final int NUM_BARS = WIN_WIDTH / BAR_WIDTH;
-
+    public static final int DEFAULT_WIN_WIDTH = 1280;
+    public static final int DEFAULT_WIN_HEIGHT = 720;
+    private static final int DEFAULT_BAR_WIDTH = 5;
+    private static final int NUM_BARS = DEFAULT_WIN_WIDTH / DEFAULT_BAR_WIDTH;
+    
     private final int[] array;
     private final int[] barColours;
     private String algorithmName = "";
@@ -108,7 +110,7 @@ public class SortArray extends JPanel {
      */
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(WIN_WIDTH, WIN_HEIGHT);
+        return new Dimension(DEFAULT_WIN_WIDTH, DEFAULT_WIN_HEIGHT);
     }
 
     public void resetColours() {
@@ -140,29 +142,82 @@ public class SortArray extends JPanel {
 			panelGraphics.drawString("Current step delay: " + algorithmDelay + "ms", 10, 55);
 			panelGraphics.drawString("     Array Changes: " + arrayChanges, 10, 80);
 
-			for (int x = 0; x < NUM_BARS; x++) {
-				int height = getValue(x) * 2;
-				double heightPercent = (double) height / (double) WIN_HEIGHT;
-				height = (int) (heightPercent * (double) getHeight());
-				int xBegin = x + (BAR_WIDTH - 1) * x;
-				int yBegin = getHeight() - height;
-
-				int val = barColours[x] * 2;
-				if (val > 190) {
-					panelGraphics.setColor(new Color(255 - val, 255, 255 - val));
-				} else {
-					panelGraphics.setColor(new Color(255, 255 - val, 255 - val));
-				}
-				panelGraphics.fillRect(xBegin, yBegin, BAR_WIDTH, height);
-				if (barColours[x] > 0) {
-					barColours[x] -= 5;
-				}
-			}
+			drawBars(panelGraphics);
 		} finally {
         	panelGraphics.dispose();
         }
     }
 
+	private void drawBars(Graphics2D panelGraphics)
+	{
+		int barWidth = getWidth() / NUM_BARS;
+		int bufferedImageWidth = barWidth * NUM_BARS;
+		int bufferedImageHeight = getHeight();
+		
+		if(bufferedImageHeight > 0 && bufferedImageWidth > 0) {
+			if(bufferedImageWidth < 256) {
+				bufferedImageWidth = 256;
+			}
+		
+			BufferedImage bufferedImage = new BufferedImage(bufferedImageWidth, bufferedImageHeight, BufferedImage.TYPE_INT_ARGB);
+			makeBufferedImageTransparent(bufferedImage);
+			Graphics2D bufferedGraphics = null;
+			try
+			{
+				bufferedGraphics = bufferedImage.createGraphics();
+				
+				for (int x = 0; x < NUM_BARS; x++) {
+					int height = getValue(x) * 2;
+					double heightPercent = (double) height / (double) DEFAULT_WIN_HEIGHT;
+					height = (int) (heightPercent * (double) getHeight());
+					int xBegin = x + (barWidth - 1) * x;
+					int yBegin = getHeight() - height;
+					
+					int val = barColours[x] * 2;
+					if (val > 190) {
+						bufferedGraphics.setColor(new Color(255 - val, 255, 255 - val));
+					}
+					else {
+						bufferedGraphics.setColor(new Color(255, 255 - val, 255 - val));
+					}
+					bufferedGraphics.fillRect(xBegin, yBegin, barWidth, height);
+					if (barColours[x] > 0) {
+						barColours[x] -= 5;
+					}
+				}
+			}
+			finally
+			{
+				if(bufferedGraphics != null)
+				{
+					bufferedGraphics.dispose();
+				}
+			}
+			
+			panelGraphics.drawImage(bufferedImage, 0, 0, getWidth(), getHeight(), 0, 0, bufferedImage.getWidth(), bufferedImage.getHeight(), null);
+		}
+	}
+	
+    private void makeBufferedImageTransparent(BufferedImage image)
+    {
+    	Graphics2D bufferedGraphics = null;
+		try
+		{
+			bufferedGraphics = image.createGraphics();
+			
+			bufferedGraphics.setComposite(AlphaComposite.getInstance(AlphaComposite.CLEAR));
+			bufferedGraphics.fillRect(0, 0, image.getWidth(), image.getHeight());
+			bufferedGraphics.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER));
+		}
+		finally
+		{
+			if(bufferedGraphics != null)
+			{
+				bufferedGraphics.dispose();
+			}
+		}
+    }
+    
     @Override
     public void setName(String algorithmName) {
         this.algorithmName = algorithmName;
