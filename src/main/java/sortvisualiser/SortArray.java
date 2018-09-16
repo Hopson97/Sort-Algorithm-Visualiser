@@ -125,36 +125,41 @@ public class SortArray extends JPanel {
      */
     @Override
     public void paintComponent(Graphics g) {
-        Graphics2D graphics = (Graphics2D) g;
-        super.paintComponent(graphics);
+    	super.paintComponent(g);
+        Graphics2D panelGraphics = (Graphics2D) g.create();
 
-        Map<RenderingHints.Key, Object> renderingHints = new HashMap<>();
-        renderingHints.put(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        graphics.addRenderingHints(renderingHints);
+		try
+		{
+			Map<RenderingHints.Key, Object> renderingHints = new HashMap<>();
+			renderingHints.put(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+			panelGraphics.addRenderingHints(renderingHints);
 
-        graphics.setColor(Color.WHITE);
-        graphics.setFont(new Font("Monospaced", Font.BOLD, 20));
-        graphics.drawString(" Current algorithm: " + algorithmName,         10, 30);
-        graphics.drawString("Current step delay: " + algorithmDelay + "ms", 10, 55);
-        graphics.drawString("     Array Changes: " + arrayChanges,          10, 80);
-         
-        for (int x = 0; x < NUM_BARS; x++) {
-            int height = getValue(x) * 2;
-            double heightPercent = (double)height / (double)WIN_HEIGHT;
-            height = (int)(heightPercent * (double)getHeight());
-            int xBegin = x + (BAR_WIDTH - 1) * x;
-            int yBegin = getHeight() - height;
+			panelGraphics.setColor(Color.WHITE);
+			panelGraphics.setFont(new Font("Monospaced", Font.BOLD, 20));
+			panelGraphics.drawString(" Current algorithm: " + algorithmName, 10, 30);
+			panelGraphics.drawString("Current step delay: " + algorithmDelay + "ms", 10, 55);
+			panelGraphics.drawString("     Array Changes: " + arrayChanges, 10, 80);
 
-            int val = barColours[x] * 2;
-            if (val > 190) {
-                graphics.setColor(new Color(255 - val, 255, 255 - val));
-            } else {
-                graphics.setColor(new Color(255, 255 - val, 255 - val));
-            }
-            graphics.fillRect(xBegin, yBegin, BAR_WIDTH, height);
-            if (barColours[x] > 0) {
-                barColours[x] -= 5;
-            }
+			for (int x = 0; x < NUM_BARS; x++) {
+				int height = getValue(x) * 2;
+				double heightPercent = (double) height / (double) WIN_HEIGHT;
+				height = (int) (heightPercent * (double) getHeight());
+				int xBegin = x + (BAR_WIDTH - 1) * x;
+				int yBegin = getHeight() - height;
+
+				int val = barColours[x] * 2;
+				if (val > 190) {
+					panelGraphics.setColor(new Color(255 - val, 255, 255 - val));
+				} else {
+					panelGraphics.setColor(new Color(255, 255 - val, 255 - val));
+				}
+				panelGraphics.fillRect(xBegin, yBegin, BAR_WIDTH, height);
+				if (barColours[x] > 0) {
+					barColours[x] -= 5;
+				}
+			}
+		} finally {
+        	panelGraphics.dispose();
         }
     }
 
