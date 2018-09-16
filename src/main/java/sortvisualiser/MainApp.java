@@ -31,22 +31,24 @@ public class MainApp {
     
     public void pushScreen(Screen screen) {
         if (!screens.isEmpty()) {
-            getCurrentScreen().setVisible(false); 
+        	window.remove(getCurrentScreen());
         }
         screens.add(screen);
-        window.add(screen);
+        window.setContentPane(screen);
+        window.validate();
         screen.onOpen();
     }
     
     public void popScreen() {
         if (!screens.isEmpty()) {
             Screen prev = getCurrentScreen();
-            prev.setVisible(false);
             screens.remove(prev);
             window.remove(prev);
             if (!screens.isEmpty()) {
-                getCurrentScreen().onOpen();
-                getCurrentScreen().setVisible(true);
+            	Screen current = getCurrentScreen();
+            	window.setContentPane(current);
+            	window.validate();
+                current.onOpen();
             }
             else {
                 window.dispose();

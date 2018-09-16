@@ -37,9 +37,9 @@ public class MidiSoundPlayer {
         Instrument[] instruments = synth.getDefaultSoundbank().getInstruments();
         if (CACHED_INDEX == - 1) {
             boolean found = false;
-            int index = -1;
-            for (Instrument i : instruments) {
-                index++;
+            int index;
+            for(index = 0; index < instruments.length; index++) {
+            	Instrument i = instruments[index];
                 if (i.getName().equals("Electric Grand Piano")) {
                     found = true;
                     break;
