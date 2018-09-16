@@ -140,6 +140,8 @@ public class SortArray extends JPanel {
          
         for (int x = 0; x < NUM_BARS; x++) {
             int height = getValue(x) * 2;
+            double heightPercent = (double)height / (double)WIN_HEIGHT;
+            height = (int)(heightPercent * (double)getHeight());
             int xBegin = x + (BAR_WIDTH - 1) * x;
             int yBegin = getHeight() - height;
 
