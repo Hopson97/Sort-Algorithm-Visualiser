@@ -8,6 +8,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -23,6 +24,12 @@ public class SortArray extends JPanel {
     public static final int DEFAULT_WIN_WIDTH = 1280;
     public static final int DEFAULT_WIN_HEIGHT = 720;
     private static final int DEFAULT_BAR_WIDTH = 5;
+    /**
+     * This is the percent of the panel the bars will consume.
+     * Based on the original 256 bars each being 2x their height
+     * and 720px window height, or 512/720
+     */
+    private static final double BAR_HEIGHT_PERCENT = 512.0/720.0;
     private static final int NUM_BARS = DEFAULT_WIN_WIDTH / DEFAULT_BAR_WIDTH;
     
     private final int[] array;
@@ -55,6 +62,14 @@ public class SortArray extends JPanel {
         return array[index];
     }
 
+    /**
+     * Gets the max value of the array or Integer.MIN_VALUE if there isn't one.
+     * @return the max value or Integer.MIN_VALUE.
+     */
+    public int getMaxValue() {
+    	return Arrays.stream(array).max().orElse(Integer.MIN_VALUE);
+    }
+    
     private void finaliseUpdate(int value,  long millisecondDelay, boolean isStep) {
         repaint();
         try {
@@ -158,6 +173,8 @@ public class SortArray extends JPanel {
 			if(bufferedImageWidth < 256) {
 				bufferedImageWidth = 256;
 			}
+			
+			double maxValue = getMaxValue();
 		
 			BufferedImage bufferedImage = new BufferedImage(bufferedImageWidth, bufferedImageHeight, BufferedImage.TYPE_INT_ARGB);
 			makeBufferedImageTransparent(bufferedImage);
@@ -167,9 +184,10 @@ public class SortArray extends JPanel {
 				bufferedGraphics = bufferedImage.createGraphics();
 				
 				for (int x = 0; x < NUM_BARS; x++) {
-					int height = getValue(x) * 2;
-					double heightPercent = (double) height / (double) DEFAULT_WIN_HEIGHT;
-					height = (int) (heightPercent * (double) getHeight());
+					double currentValue = getValue(x);
+					double percentOfMax = currentValue / maxValue;
+					double heightPercentOfPanel = percentOfMax * BAR_HEIGHT_PERCENT;
+					int height = (int) (heightPercentOfPanel * (double) getHeight());
 					int xBegin = x + (barWidth - 1) * x;
 					int yBegin = getHeight() - height;
 					
