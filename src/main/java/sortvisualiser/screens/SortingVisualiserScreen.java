@@ -2,10 +2,7 @@ package sortvisualiser.screens;
 
 import java.awt.BorderLayout;
 import java.util.ArrayList;
-
-import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingWorker;
-
 import sortvisualiser.MainApp;
 import sortvisualiser.SortArray;
 import sortvisualiser.algorithms.ISortAlgorithm;
@@ -30,7 +27,6 @@ public final class SortingVisualiserScreen extends Screen {
         setLayout(new BorderLayout());
         sortArray = new SortArray(playSounds);
         add(sortArray, BorderLayout.CENTER);
-        
         sortQueue = algorithms;
     }
     
