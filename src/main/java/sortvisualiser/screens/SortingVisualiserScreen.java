@@ -27,10 +27,8 @@ public final class SortingVisualiserScreen extends Screen {
      */
     public SortingVisualiserScreen(ArrayList<ISortAlgorithm> algorithms, boolean playSounds, MainApp app) {
         super(app);
-        JSpinner sp = new JSpinner(new SpinnerNumberModel());
         setLayout(new BorderLayout());
         sortArray = new SortArray(playSounds);
-        
         add(sortArray, BorderLayout.CENTER);
         sortQueue = algorithms;
     }
