@@ -1,5 +1,6 @@
 package sortvisualiser.screens;
 
+import java.awt.CheckboxGroup;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -39,10 +41,12 @@ import sortvisualiser.algorithms.StoogeSort;
 public final class MainMenuScreen extends Screen {
     private static final Color BACKGROUND_COLOUR = Color.DARK_GRAY;
     private final ArrayList<AlgorithmCheckBox> checkBoxes;
+    private final ButtonGroup checkBoxGroup;
     
     public MainMenuScreen(MainApp app) {
         super(app);
         checkBoxes = new ArrayList<>();
+        checkBoxGroup = new ButtonGroup();
         setUpGUI();
     }
     
@@ -51,6 +55,7 @@ public final class MainMenuScreen extends Screen {
         box.setAlignmentX(Component.LEFT_ALIGNMENT);
         box.setBackground(BACKGROUND_COLOUR);
         box.setForeground(Color.WHITE);
+        checkBoxGroup.add(box);
         checkBoxes.add(new AlgorithmCheckBox(algorithm, box));
         panel.add(box);
     }
@@ -109,12 +114,13 @@ public final class MainMenuScreen extends Screen {
                     algorithms.add(cb.getAlgorithm());
                 }
             }
-            app.pushScreen(
-                    new SortingVisualiserScreen(
-                            algorithms, 
-                            soundCheckBox.isSelected(), 
-                            app
-                    ));
+            if(checkBoxGroup.getSelection() != null)
+                app.pushScreen(
+                        new SortingVisualiserScreen(
+                                algorithms, 
+                                soundCheckBox.isSelected(), 
+                                app
+                        ));
         });
         startButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         
@@ -134,6 +140,7 @@ public final class MainMenuScreen extends Screen {
         checkBoxes.forEach((box) -> {
             box.unselect();
         });
+
     }
     
     private class AlgorithmCheckBox {
@@ -149,7 +156,7 @@ public final class MainMenuScreen extends Screen {
         public void unselect() {
             box.setSelected(false);
         }
-        
+
         public boolean isSelected() {
             return box.isSelected();
         }
