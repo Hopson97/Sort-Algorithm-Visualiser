@@ -49,7 +49,7 @@ public final class MainMenuScreen extends Screen {
     }
     
     private void addCheckBox(ISortAlgorithm algorithm, JPanel panel) {
-        JCheckBox box = new JCheckBox("", false);
+        JCheckBox box = new JCheckBox("", true);
         box.setAlignmentX(Component.LEFT_ALIGNMENT);
         box.setBackground(BACKGROUND_COLOUR);
         box.setForeground(Color.WHITE);
@@ -103,7 +103,7 @@ public final class MainMenuScreen extends Screen {
         
         optionsContainer.add(soundCheckBox);
        
-        JButton startButton = new JButton("Begin Visual Sorting");
+        JButton startButton = new JButton("Begin Visual Sorter");
         startButton.addActionListener((ActionEvent e) -> {
             ArrayList<ISortAlgorithm> algorithms = new ArrayList<>();
             for (AlgorithmCheckBox cb : checkBoxes) {
