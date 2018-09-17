@@ -2,6 +2,9 @@ package sortvisualiser.screens;
 
 import java.awt.BorderLayout;
 import java.util.ArrayList;
+
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingWorker;
 import sortvisualiser.MainApp;
 import sortvisualiser.SortArray;
@@ -24,8 +27,10 @@ public final class SortingVisualiserScreen extends Screen {
      */
     public SortingVisualiserScreen(ArrayList<ISortAlgorithm> algorithms, boolean playSounds, MainApp app) {
         super(app);
+        JSpinner sp = new JSpinner(new SpinnerNumberModel());
         setLayout(new BorderLayout());
         sortArray = new SortArray(playSounds);
+        
         add(sortArray, BorderLayout.CENTER);
         sortQueue = algorithms;
     }
@@ -57,12 +62,11 @@ public final class SortingVisualiserScreen extends Screen {
                 } 
                 for (ISortAlgorithm algorithm : sortQueue) {
                     shuffleAndWait();
-
-                    sortArray.setName(algorithm.getName());
-                    sortArray.setAlgorithmDelay(algorithm.getDelay());
                     
+                    sortArray.setName(algorithm.getName());
+                    sortArray.setAlgorithm(algorithm);
+        
                     algorithm.runSort(sortArray);
-
                     sortArray.resetColours();
                     sortArray.highlightArray();
                     sortArray.resetColours();

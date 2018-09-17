@@ -1,6 +1,7 @@
 package sortvisualiser;
 
 import java.awt.AlphaComposite;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -13,7 +14,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+
+import sortvisualiser.algorithms.ISortAlgorithm;
 
 /**
  * The array that can be sorted
@@ -34,10 +40,13 @@ public class SortArray extends JPanel {
     
     private final int[] array;
     private final int[] barColours;
+    private int spinnerValue = 0;
     private String algorithmName = "";
+    private ISortAlgorithm algorithm;
     private long algorithmDelay = 0;
     
     private MidiSoundPlayer player;
+    private JSpinner spinner;
     private boolean playSounds;
 
     private int arrayChanges = 0; // Number of changes to the array the current algorithm has taken so far
@@ -52,6 +61,12 @@ public class SortArray extends JPanel {
         }
         player = new MidiSoundPlayer(NUM_BARS);
         this.playSounds = playSounds;
+        spinner = new JSpinner(new SpinnerNumberModel(1, 1, 1000, 1));
+        spinner.addChangeListener((event) -> {
+            algorithmDelay = (Integer) spinner.getValue();
+            algorithm.setDelay(algorithmDelay);
+        });
+        add(spinner,BorderLayout.LINE_START);
     }
 
     public int arraySize() {
@@ -98,6 +113,8 @@ public class SortArray extends JPanel {
     public void updateSingle(int index, int value, long millisecondDelay, boolean isStep) {
         array[index] = value;
         barColours[index] = 100;
+       
+
         finaliseUpdate(value, millisecondDelay, isStep);
         repaint();
     }
@@ -150,7 +167,6 @@ public class SortArray extends JPanel {
 			Map<RenderingHints.Key, Object> renderingHints = new HashMap<>();
 			renderingHints.put(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			panelGraphics.addRenderingHints(renderingHints);
-
 			panelGraphics.setColor(Color.WHITE);
 			panelGraphics.setFont(new Font("Monospaced", Font.BOLD, 20));
 			panelGraphics.drawString(" Current algorithm: " + algorithmName, 10, 30);
@@ -168,7 +184,7 @@ public class SortArray extends JPanel {
 		int barWidth = getWidth() / NUM_BARS;
 		int bufferedImageWidth = barWidth * NUM_BARS;
 		int bufferedImageHeight = getHeight();
-		
+        
 		if(bufferedImageHeight > 0 && bufferedImageWidth > 0) {
 			if(bufferedImageWidth < 256) {
 				bufferedImageWidth = 256;
@@ -241,7 +257,12 @@ public class SortArray extends JPanel {
         this.algorithmName = algorithmName;
     }
     
-    public void setAlgorithmDelay(long delay) {
-        algorithmDelay = delay;
+    public void setAlgorithm(ISortAlgorithm algorithm) {
+        this.algorithm = algorithm;
+        algorithmDelay = algorithm.getDelay();
+        spinner.setValue((int) algorithm.getDelay());
+    }
+    public long getAlgorithmDelay(){
+        return algorithmDelay;
     }
 }
