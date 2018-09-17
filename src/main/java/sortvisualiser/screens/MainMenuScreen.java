@@ -139,7 +139,6 @@ public final class MainMenuScreen extends Screen {
     public void onOpen() {
         checkBoxes.forEach((box) -> {
             box.unselect();
-            
         });
 
     }

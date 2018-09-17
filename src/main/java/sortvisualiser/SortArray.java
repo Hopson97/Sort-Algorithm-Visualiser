@@ -52,7 +52,6 @@ public class SortArray extends JPanel {
         }
         player = new MidiSoundPlayer(NUM_BARS);
         this.playSounds = playSounds;
-      
     }
 
     public int arraySize() {

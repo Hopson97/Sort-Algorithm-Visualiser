@@ -5,7 +5,7 @@ dist/
 nbdist/
 .nb-gradle/
 .gradle
-.vscode
+.vscode/
 gradle-app.setting
 !gradle-wrapper.jar
 .gradletasknamecache
