@@ -1,6 +1,7 @@
 package sortvisualiser;
 
 import java.awt.AlphaComposite;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -14,6 +15,7 @@ import java.util.Map;
 import java.util.Random;
 
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 
 /**
  * The array that can be sorted
@@ -52,6 +54,10 @@ public class SortArray extends JPanel {
         }
         player = new MidiSoundPlayer(NUM_BARS);
         this.playSounds = playSounds;
+       JSpinner sp = new JSpinner();
+       sp.setValue(30);
+       add(sp,BorderLayout.WEST);
+      
     }
 
     public int arraySize() {
@@ -153,7 +159,7 @@ public class SortArray extends JPanel {
 
 			panelGraphics.setColor(Color.WHITE);
 			panelGraphics.setFont(new Font("Monospaced", Font.BOLD, 20));
-			panelGraphics.drawString(" Current algorithm: " + algorithmName, 10, 30);
+			panelGraphics.drawString(" Current algorithm: " + algorithmName, 30, 30);
 			panelGraphics.drawString("Current step delay: " + algorithmDelay + "ms", 10, 55);
 			panelGraphics.drawString("     Array Changes: " + arrayChanges, 10, 80);
 

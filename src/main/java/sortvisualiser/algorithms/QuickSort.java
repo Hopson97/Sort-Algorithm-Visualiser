@@ -68,7 +68,7 @@ public class QuickSort implements ISortAlgorithm {
 
     @Override
     public long getDelay() {
-        return 30;
+        return 2;
     }
 
 }
