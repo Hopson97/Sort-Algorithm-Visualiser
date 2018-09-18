@@ -9,6 +9,7 @@ import sortvisualiser.SortArray;
  */
 public class BubbleSort implements ISortAlgorithm {
 
+    private long stepDelay = 2;
     /**
      * This method implements the bubble sort algorithm, see
      * <a href="https://en.wikipedia.org/wiki/Bubble_sort">Bubble_sort</a> to understand more.
@@ -38,6 +39,11 @@ public class BubbleSort implements ISortAlgorithm {
 
     @Override
     public long getDelay() {
-        return 2;
+        return stepDelay;
+    }
+
+    @Override
+    public void setDelay(long delay) {
+        this.stepDelay = delay;
     }
 }

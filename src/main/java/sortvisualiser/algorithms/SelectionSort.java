@@ -9,6 +9,7 @@ import sortvisualiser.SortArray;
  */
 public class SelectionSort implements ISortAlgorithm {
 
+    private long stepDelay = 120;
     /**
      * This method implements the Selection sort algorithm, see
      * <a href="https://en.wikipedia.org/wiki/Selection_sort">Selection_sort</a> to understand more.
@@ -40,6 +41,11 @@ public class SelectionSort implements ISortAlgorithm {
 
     @Override
     public long getDelay() {
-        return 120;
+        return stepDelay;
+    }
+
+    @Override
+    public void setDelay(long delay) {
+        this.stepDelay = delay;
     }
 }

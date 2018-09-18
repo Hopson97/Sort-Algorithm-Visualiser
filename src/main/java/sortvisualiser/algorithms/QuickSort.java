@@ -9,6 +9,7 @@ import sortvisualiser.SortArray;
  */
 public class QuickSort implements ISortAlgorithm {
 
+    private long stepDelay = 30;
     /**
      * This is where the magic of quick sort append.
      *
@@ -68,7 +69,12 @@ public class QuickSort implements ISortAlgorithm {
 
     @Override
     public long getDelay() {
-        return 30;
+        return stepDelay;
+    }
+
+    @Override
+    public void setDelay(long delay) {
+        this.stepDelay = delay;
     }
 
 }

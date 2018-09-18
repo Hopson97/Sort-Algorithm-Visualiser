@@ -5,6 +5,7 @@ import sortvisualiser.SortArray;
 
 public class CycleSort implements ISortAlgorithm {
 
+    private long stepDelay = 125;
     private class CycleResult {
         public int position;
         public boolean cont;
@@ -63,6 +64,11 @@ public class CycleSort implements ISortAlgorithm {
 
     @Override
     public long getDelay() {
-        return 125;
+        return stepDelay;
+    }
+
+    @Override
+    public void setDelay(long delay) {
+        this.stepDelay = delay;
     }
 }

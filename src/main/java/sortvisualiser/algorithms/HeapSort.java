@@ -5,6 +5,8 @@ import sortvisualiser.SortArray;
 
 public class HeapSort implements ISortAlgorithm {
 
+    private long stepDelay = 20;
+
     private boolean isChildLargerThanRoot(int child, int largest, int n, SortArray array) {
         return child < n && array.getValue(child) > array.getValue(largest);
     }
@@ -46,6 +48,11 @@ public class HeapSort implements ISortAlgorithm {
 
     @Override
     public long getDelay() {
-        return 20;
+        return stepDelay;
+    }
+
+    @Override
+    public void setDelay(long delay) {
+        this.stepDelay = delay;
     }
 }

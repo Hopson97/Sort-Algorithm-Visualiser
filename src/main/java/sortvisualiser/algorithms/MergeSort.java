@@ -9,6 +9,7 @@ import sortvisualiser.SortArray;
  */
 public class MergeSort implements ISortAlgorithm {
 
+    private long stepDelay = 20;
     /**
      * Returns a subsequence of the array take from input. The original array is cut starting
      * from begin position indicated by the homonymous parameter up to (begin + size) position.
@@ -119,6 +120,11 @@ public class MergeSort implements ISortAlgorithm {
 
     @Override
     public long getDelay() {
-        return 20;
+        return stepDelay;
+    }
+
+    @Override
+    public void setDelay(long delay) {
+        this.stepDelay = delay;
     }
 }

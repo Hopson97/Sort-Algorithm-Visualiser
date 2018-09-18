@@ -5,6 +5,7 @@ import sortvisualiser.SortArray;
 
 public class StoogeSort implements ISortAlgorithm {
 
+    private long stepDelay = 5;
     public void stoogeSort(SortArray array, int lowIndex, int highIndex) {
         if (lowIndex >= highIndex) {
             return;
@@ -33,6 +34,11 @@ public class StoogeSort implements ISortAlgorithm {
 
     @Override
     public long getDelay() {
-        return 5;
+        return stepDelay;
+    }
+
+    @Override
+    public void setDelay(long delay) {
+        this.stepDelay = delay;
     }
 }

@@ -7,8 +7,9 @@ import sortvisualiser.SortArray;
  *
  * @author Matthew Hopson
  */
-public class GnomeSort implements ISortAlgorithm {
+ public class GnomeSort implements ISortAlgorithm {
 
+    private long stepDelay = 2;
     /**
      * This method implements the gnome sort algorithm, see
      * <a href="https://en.wikipedia.org/wiki/Gnome_sort">Gnome_sort</a> to understand more.
@@ -42,6 +43,11 @@ public class GnomeSort implements ISortAlgorithm {
 
     @Override
     public long getDelay() {
-        return 2;
+        return stepDelay;
+    }
+
+    @Override
+    public void setDelay(long delay) {
+        this.stepDelay = delay;
     }
 }
