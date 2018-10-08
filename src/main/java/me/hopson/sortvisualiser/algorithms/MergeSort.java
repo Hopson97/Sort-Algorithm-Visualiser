@@ -1,6 +1,6 @@
-package sortvisualiser.algorithms;
+package me.hopson.sortvisualiser.algorithms;
 
-import sortvisualiser.SortArray;
+import me.hopson.sortvisualiser.SortArray;
 
 /**
  * Merge sort implementation
@@ -10,14 +10,15 @@ import sortvisualiser.SortArray;
 public class MergeSort implements ISortAlgorithm {
 
     private long stepDelay = 20;
+
     /**
-     * Returns a subsequence of the array take from input. The original array is cut starting
+     * Returns a sub sequence of the array take from input. The original array is cut starting
      * from begin position indicated by the homonymous parameter up to (begin + size) position.
      *
      * @param array this is the array tu cut
-     * @param begin it represents the start position of the subsequence
-     * @param size  is the length of the subsequence
-     * @return the subsequence of the array
+     * @param begin it represents the start position of the sub sequence
+     * @param size  is the length of the sub sequence
+     * @return the sub sequence of the array
      * @see SortArray
      */
     private int[] getSubArray(SortArray array, int begin, int size) {

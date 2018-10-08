@@ -1,6 +1,6 @@
-package sortvisualiser.algorithms;
+package me.hopson.sortvisualiser.algorithms;
 
-import sortvisualiser.SortArray;
+import me.hopson.sortvisualiser.SortArray;
 
 /**
  * Quick sort implementation
@@ -10,12 +10,13 @@ import sortvisualiser.SortArray;
 public class QuickSort implements ISortAlgorithm {
 
     private long stepDelay = 30;
+
     /**
      * This is where the magic of quick sort append.
      *
-     * @param array this is the array to cut and merge
-     * @param lowIndex the most left index of the array
-     * @param highIndex  the most right index of the array
+     * @param array     this is the array to cut and merge
+     * @param lowIndex  the most left index of the array
+     * @param highIndex the most right index of the array
      * @see SortArray
      */
     private int findPivotPoint(SortArray array, int lowIndex, int highIndex) {
@@ -34,9 +35,9 @@ public class QuickSort implements ISortAlgorithm {
     /**
      * This is the core of the algorithm quick sort.
      *
-     * @param array this is the array to cut and merge
-     * @param lowIndex the most left index of the array
-     * @param highIndex  the most right index of the array
+     * @param array     this is the array to cut and merge
+     * @param lowIndex  the most left index of the array
+     * @param highIndex the most right index of the array
      * @see SortArray
      */
     private void quickSort(SortArray array, int lowIndex, int highIndex) {

@@ -1,11 +1,11 @@
-package sortvisualiser.algorithms;
+package me.hopson.sortvisualiser.algorithms;
 
-import sortvisualiser.SortArray;
-import sortvisualiser.Util.Util;
+import me.hopson.sortvisualiser.SortArray;
+import me.hopson.sortvisualiser.util.Util;
 
 public class PancakeSort implements ISortAlgorithm {
-    private long stepDelay = 1
-    ;
+    private long stepDelay = 1;
+
     private void flip(SortArray array, int i) {
         for (int j = 0; j < i; j++, i--) {
             array.swap(i, j, getDelay(), true);

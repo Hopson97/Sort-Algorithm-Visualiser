@@ -1,6 +1,6 @@
-package sortvisualiser.algorithms;
+package me.hopson.sortvisualiser.algorithms;
 
-import sortvisualiser.SortArray;
+import me.hopson.sortvisualiser.SortArray;
 
 
 public class HeapSort implements ISortAlgorithm {
@@ -11,9 +11,9 @@ public class HeapSort implements ISortAlgorithm {
         return child < n && array.getValue(child) > array.getValue(largest);
     }
 
-    private void toBinaryTreeArray(SortArray array,  int n, int rootIndex) {
-        int largest    = rootIndex;
-        int leftChild  = 2 * rootIndex + 1;
+    private void toBinaryTreeArray(SortArray array, int n, int rootIndex) {
+        int largest = rootIndex;
+        int leftChild = 2 * rootIndex + 1;
         int rightChild = 2 * rootIndex + 2;
 
         if (isChildLargerThanRoot(leftChild, largest, n, array)) {

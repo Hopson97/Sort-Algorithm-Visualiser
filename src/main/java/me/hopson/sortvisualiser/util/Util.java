@@ -1,6 +1,6 @@
-package sortvisualiser.Util;
+package me.hopson.sortvisualiser.util;
 
-import sortvisualiser.SortArray;
+import me.hopson.sortvisualiser.SortArray;
 
 public class Util {
     public static int findMaxValueIndex(SortArray array, int upToIndex) {

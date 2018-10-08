@@ -1,6 +1,6 @@
-package sortvisualiser.algorithms;
+package me.hopson.sortvisualiser.algorithms;
 
-import sortvisualiser.SortArray;
+import me.hopson.sortvisualiser.SortArray;
 
 /**
  * Insertion sort implementation
@@ -10,6 +10,7 @@ import sortvisualiser.SortArray;
 public class InsertionSort implements ISortAlgorithm {
 
     private long stepDelay = 1;
+
     /**
      * This method implements the insertion sort algorithm, see
      * <a href="https://en.wikipedia.org/wiki/Insertion_sort">Insertion_sort</a> to understand more.

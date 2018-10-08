@@ -1,15 +1,16 @@
-package sortvisualiser.algorithms;
+package me.hopson.sortvisualiser.algorithms;
 
-import sortvisualiser.SortArray;
+import me.hopson.sortvisualiser.SortArray;
 
 /**
  * Gnome sort implementation
  *
  * @author Matthew Hopson
  */
- public class GnomeSort implements ISortAlgorithm {
+public class GnomeSort implements ISortAlgorithm {
 
     private long stepDelay = 2;
+
     /**
      * This method implements the gnome sort algorithm, see
      * <a href="https://en.wikipedia.org/wiki/Gnome_sort">Gnome_sort</a> to understand more.

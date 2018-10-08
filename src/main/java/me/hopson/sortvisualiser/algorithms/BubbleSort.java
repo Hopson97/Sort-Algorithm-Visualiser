@@ -1,18 +1,19 @@
-package sortvisualiser.algorithms;
+package me.hopson.sortvisualiser.algorithms;
 
-import sortvisualiser.SortArray;
+import me.hopson.sortvisualiser.SortArray;
 
 /**
- * Selection sort implementation
+ * Bubble sort implementation
  *
- * @author Matt Hopson
+ * @author mhops
  */
-public class SelectionSort implements ISortAlgorithm {
+public class BubbleSort implements ISortAlgorithm {
 
-    private long stepDelay = 120;
+    private long stepDelay = 2;
+
     /**
-     * This method implements the Selection sort algorithm, see
-     * <a href="https://en.wikipedia.org/wiki/Selection_sort">Selection_sort</a> to understand more.
+     * This method implements the bubble sort algorithm, see
+     * <a href="https://en.wikipedia.org/wiki/Bubble_sort">Bubble_sort</a> to understand more.
      * Takes a SortArray object called array and sorts his elements according to the mathematical theory
      * of the order "less than", see <a href="https://en.wikipedia.org/wiki/Order_theory">Order_theory</a> to
      * understand more.
@@ -24,19 +25,17 @@ public class SelectionSort implements ISortAlgorithm {
     public void runSort(SortArray array) {
         int len = array.arraySize();
         for (int i = 0; i < len - 1; i++) {
-            int minIndex = i;
-            for (int j = i + 1; j < len; j++) {
-                if (array.getValue(j) < array.getValue(minIndex)) {
-                    minIndex = j;
+            for (int j = 0; j < len - i - 1; j++) {
+                if (array.getValue(j) > array.getValue(j + 1)) {
+                    array.swap(j, j + 1, getDelay(), true);
                 }
             }
-            array.swap(i, minIndex, getDelay(), true);
         }
     }
 
     @Override
     public String getName() {
-        return "Selection Sort";
+        return "Bubble Sort";
     }
 
     @Override

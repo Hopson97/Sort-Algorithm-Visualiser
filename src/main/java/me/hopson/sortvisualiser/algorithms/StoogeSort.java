@@ -1,12 +1,13 @@
-package sortvisualiser.algorithms;
+package me.hopson.sortvisualiser.algorithms;
 
-import sortvisualiser.SortArray;
+import me.hopson.sortvisualiser.SortArray;
 
 
 public class StoogeSort implements ISortAlgorithm {
 
     private long stepDelay = 5;
-    public void stoogeSort(SortArray array, int lowIndex, int highIndex) {
+
+    private void stoogeSort(SortArray array, int lowIndex, int highIndex) {
         if (lowIndex >= highIndex) {
             return;
         }

@@ -1,24 +1,14 @@
-package sortvisualiser.algorithms;
+package me.hopson.sortvisualiser.algorithms;
 
-import sortvisualiser.SortArray;
+import me.hopson.sortvisualiser.SortArray;
 
 
 public class CycleSort implements ISortAlgorithm {
 
     private long stepDelay = 125;
-    private class CycleResult {
-        public int position;
-        public boolean cont;
 
-        public CycleResult(int retValue, boolean shouldContinue) {
-            position = retValue;
-            cont = shouldContinue;
-
-        }
-    }
-    
-    private CycleResult doCycle(int begin, int position, int value, SortArray array, boolean canFinishEarly) {
-        position = begin;
+    private CycleResult doCycle(int begin, int value, SortArray array, boolean canFinishEarly) {
+        int position = begin;
         for (int i = begin + 1; i < array.arraySize(); i++) {
             if (array.getValue(i) < value) {
                 position++;
@@ -37,8 +27,8 @@ public class CycleSort implements ISortAlgorithm {
         int n = array.arraySize();
         for (int begin = 0; begin <= n - 2; begin++) {
             int value = array.getValue(begin);
-            int position = begin;
-            CycleResult result = doCycle(begin, position, value, array, true);
+            int position;
+            CycleResult result = doCycle(begin, value, array, true);
             if (result.cont) continue;
             position = result.position;
             if (position != begin) {
@@ -47,7 +37,7 @@ public class CycleSort implements ISortAlgorithm {
                 array.updateSingle(position, t, getDelay(), true);
             }
             while (position != begin) {
-                position = doCycle(begin, position, value, array, false).position;
+                position = doCycle(begin, value, array, false).position;
                 if (value != array.getValue(position)) {
                     int t = value;
                     value = array.getValue(position);
@@ -70,5 +60,16 @@ public class CycleSort implements ISortAlgorithm {
     @Override
     public void setDelay(long delay) {
         this.stepDelay = delay;
+    }
+
+    private class CycleResult {
+        int position;
+        boolean cont;
+
+        CycleResult(int retValue, boolean shouldContinue) {
+            position = retValue;
+            cont = shouldContinue;
+
+        }
     }
 }
