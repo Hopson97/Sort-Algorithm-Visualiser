@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -21,17 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import sortvisualiser.MainApp;
-import sortvisualiser.algorithms.BubbleSort;
-import sortvisualiser.algorithms.CycleSort;
-import sortvisualiser.algorithms.GnomeSort;
-import sortvisualiser.algorithms.HeapSort;
-import sortvisualiser.algorithms.ISortAlgorithm;
-import sortvisualiser.algorithms.InsertionSort;
-import sortvisualiser.algorithms.MergeSort;
-import sortvisualiser.algorithms.PancakeSort;
-import sortvisualiser.algorithms.QuickSort;
-import sortvisualiser.algorithms.SelectionSort;
-import sortvisualiser.algorithms.StoogeSort;
+import sortvisualiser.algorithms.*;
 
 
 /**
@@ -95,6 +84,9 @@ public final class MainMenuScreen extends Screen {
         addCheckBox(new InsertionSort(),    sortAlgorithmContainer);
         addCheckBox(new HeapSort(),         sortAlgorithmContainer);
         addCheckBox(new GnomeSort(),        sortAlgorithmContainer);
+        addCheckBox(new CountingSort(),     sortAlgorithmContainer);
+        addCheckBox(new RadixSort(),        sortAlgorithmContainer);
+        addCheckBox(new IterativeMergeSort(), sortAlgorithmContainer);
         
         JCheckBox soundCheckBox = new JCheckBox("Play Sounds");
         soundCheckBox.setAlignmentX(Component.LEFT_ALIGNMENT);
