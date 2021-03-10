@@ -69,7 +69,7 @@ public class StairSort implements ISortAlgorithm
 
         //scale the array up or down so that the min is zero 
         //not needed bc of the ype of array this program works with
-        for (int i = 0; i < n; i++) array.updateSingle(i, array.getValue(i)-min, getDelay(), true);
+        for (int i = 0; i < n; i++) array.updateSingle(i, array.getValue(i)-min, getDelay(), false);
         max -= min;
 
         //calculate the stair sizes
@@ -98,7 +98,7 @@ public class StairSort implements ISortAlgorithm
             stairBins[bestBin].add(array.getValue(i));
         }
         
-        //change the array to show the bins
+        //change the array to show the bins NOT NEEDED FOR THE ALGORITHM, just visualization
         for(int x=0; x < stairBins.length; x++) {
             //convert arraylist to array, count sort that
             int[] binArr = stairBins[x].stream().mapToInt(i -> i).toArray();
@@ -129,7 +129,7 @@ public class StairSort implements ISortAlgorithm
         }
 
         //scale the array back to how it was (this should be the last thing done)
-        for (int i = 0; i < n; i++) array.updateSingle(i, arr[i]+min, getDelay(), true);      
+        for (int i = 0; i < n; i++) array.updateSingle(i, arr[i]+min, getDelay(), false);      
     }
 
     /**

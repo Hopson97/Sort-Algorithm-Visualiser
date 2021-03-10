@@ -29,7 +29,7 @@ import sortvisualiser.algorithms.ISortAlgorithm;
 public class SortArray extends JPanel {
     public static final int DEFAULT_WIN_WIDTH = 1280;
     public static final int DEFAULT_WIN_HEIGHT = 720;
-    private static final int DEFAULT_BAR_WIDTH = 5;
+    private static final int DEFAULT_BAR_WIDTH = 1;
     /**
      * This is the percent of the panel the bars will consume.
      * Based on the original 256 bars each being 2x their height

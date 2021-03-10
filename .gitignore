@@ -17,3 +17,8 @@ bin/
 
 .idea/
 out/
+*.png
+*.bluej
+*.class
+*.ctxt
+*.TXT
